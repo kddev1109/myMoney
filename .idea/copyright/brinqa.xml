@@ -1,0 +1,9 @@
+<component name="CopyrightManager">
+  <copyright>
+    <option name="notice" value="@(#)&amp;#36;file.fileName&#10;Copyright (c) 2008-&amp;#36;today.year Brinqa. All rights reserved.&#10;BRINQA PROPRIETARY/CONFIDENTIAL. Use is subject to license terms." />
+    <option name="keyword" value="Copyright" />
+    <option name="allowReplaceKeyword" value="" />
+    <option name="myName" value="brinqa" />
+    <option name="myLocal" value="true" />
+  </copyright>
+</component>
