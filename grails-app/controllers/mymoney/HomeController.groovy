@@ -6,6 +6,6 @@ class HomeController {
 
     @Secured(['ROLE_INDIVIDUAL', 'ROLE_FAMILY'])
     def index() {
-        render(view: '/index', model: [activeNav: 'Home'])
+        render(view: '/home/homePage', model: [activeNav: 'Home', template: '/home/dashboard'])
     }
 }

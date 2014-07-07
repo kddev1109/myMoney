@@ -24,12 +24,12 @@
                         <button type="button" class="btn btn-default" id="individualProfileType" name="profileType"
                                 ng-model="registrationCtrl.profileDetails.profileType"
                                 ng-click="registrationCtrl.setProfileType('Individual')" ng-class="{ 'active' : registrationCtrl.isIndividualProfileType() }">
-                            <g:message code='myMoney.registration.account.profileType.individual'/>
+                            <span class="glyphicon glyphicon-user"></span> <g:message code='myMoney.registration.account.profileType.individual'/>
                         </button>
                         <button type="button" class="btn btn-default" id="familyProfileType" name="profileType"
                                 ng-model="registrationCtrl.profileDetails.profileType"
                                 ng-click="registrationCtrl.setProfileType('Family')" ng-class="{ 'active' : registrationCtrl.isFamilyProfileType() }">
-                            <g:message code='myMoney.registration.account.profileType.family'/>
+                            <span class="glyphicon glyphicon-user"></span><span class="glyphicon glyphicon-user"></span> <g:message code='myMoney.registration.account.profileType.family'/>
                         </button>
                     </div>
                 </div>
@@ -48,21 +48,20 @@
                     <button type="button" class="btn btn-default"
                             ng-click="registrationCtrl.checkUsernameAvailability('${createLink(controller: 'profile', action: 'checkUsernameAvailability')}')"
                             ng-disabled="registrationCtrl.doNotDisplayCheckUsernameAvailability()">
-                        <g:message code='myMoney.registration.account.username.checkAvailability'/> <span class="glyphicon glyphicon-search">
+                        <g:message code='myMoney.registration.account.username.checkAvailability'/> <span class="glyphicon glyphicon-search"></span>
                     </button>
                 </div>
             </div>
 
             <div class="form-group" ng-hide="registrationCtrl.doNotDisplayUsernameUnavailable()">
                 <div class="col-md-12 text-danger text-center">
-                    <g:message code='myMoney.registration.account.username.checkAvailability.usernameIsUnavailable'/> <span
-                    class="glyphicon glyphicon-thumbs-down">
+                    <g:message code='myMoney.registration.account.username.checkAvailability.usernameIsUnavailable'/> <span class="glyphicon glyphicon-thumbs-down"></span>
                 </div>
             </div>
 
             <div class="form-group" ng-show="registrationCtrl.displayUsernameAvailable()">
                 <div class="col-md-12 text-success text-center">
-                    <g:message code='myMoney.registration.account.username.checkAvailability.usernameIsAvailable'/> <span class="glyphicon glyphicon-thumbs-up">
+                    <g:message code='myMoney.registration.account.username.checkAvailability.usernameIsAvailable'/> <span class="glyphicon glyphicon-thumbs-up"></span>
                 </div>
             </div>
 

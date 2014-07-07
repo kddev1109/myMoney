@@ -1,7 +1,7 @@
 <div class="row" style="max-width: 800px; margin: 5px auto;">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title"><g:message code='myMoney.profile.individualUserInformation.heading'/></h3>
+            <h3 class="panel-title"><span class="glyphicon glyphicon-user"></span> <g:message code='myMoney.profile.individualUserInformation.heading'/></h3>
         </div>
 
         <div class="panel-body">
