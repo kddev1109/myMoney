@@ -1,3 +1,4 @@
+<%@ page import="grails.util.Holders" %>
 <div class="container-fluid">
     <div class="row" style="max-width: 800px; margin: 0 auto;">
         <div class="panel panel-default">
@@ -8,7 +9,10 @@
                 <div class="col-md-12 text-justify">
                     <p>You have received a MyMoney family member request. Please review the request and accept/reject the same.</p>
                     <p>
-                        Please click <a href="${createLink(controller: 'profile', action: 'reviewFamilyMemberRequest', params: [id: requestId])}">here</a> to review the request.
+                        <%
+                            def serverUrl = Holders.grailsApplication.config.grails.serverURL
+                        %>
+                        Please click <a href="${serverUrl}/profile/reviewFamilyMemberRequest/${requestId}">here</a> to review the request.
                     </p>
                 </div>
             </div>
