@@ -1,7 +1,7 @@
 package mymoney
 
 import com.mymoney.profile.FamilyMemberRequest
-import com.mymoney.profile.FamilyMemberRequestStatus
+import com.mymoney.alert.request.RequestStatus
 import com.mymoney.profile.FamilyProfile
 import com.mymoney.profile.IndividualProfile
 import com.mymoney.profile.Profile
@@ -25,11 +25,11 @@ class ProfileController {
         if (userId) {
             User user = User.get(userId)
             if (user) {
-                Profile profile = Profile.findByUser(user)
+                Profile profile = user.profile
 
                 def profileDetailsProperties = []
 
-                if (profile instanceof IndividualProfile) {
+                if (profile && profile instanceof IndividualProfile) {
                     profileDetailsProperties = [
                         accountInformation: [
                             [
@@ -70,38 +70,38 @@ class ProfileController {
                             ],
                             [
                                 key: g.message(code: 'myMoney.profile.contactInformation.address.line1'),
-                                value: profile.address?.line1?: '',
+                                value: profile.address?.line1 ?: '',
                                 type: 'text'
                             ],
                             [
                                 key: g.message(code: 'myMoney.profile.contactInformation.address.line2'),
-                                value: profile.address?.line2?: '',
+                                value: profile.address?.line2 ?: '',
                                 type: 'text'
                             ],
                             [
                                 key: g.message(code: 'myMoney.profile.contactInformation.address.city'),
-                                value: profile.address?.city?: '',
+                                value: profile.address?.city ?: '',
                                 type: 'text'
                             ],
                             [
                                 key: g.message(code: 'myMoney.profile.contactInformation.address.state'),
-                                value: profile.address?.state?: '',
+                                value: profile.address?.state ?: '',
                                 type: 'text'
                             ],
                             [
                                 key: g.message(code: 'myMoney.profile.contactInformation.address.zipCode'),
-                                value: profile.address?.zipCode?: '',
+                                value: profile.address?.zipCode ?: '',
                                 type: 'text'
                             ],
                             [
                                 key: g.message(code: 'myMoney.profile.contactInformation.address.country'),
-                                value: profile.address?.country?: '',
+                                value: profile.address?.country ?: '',
                                 type: 'text'
                             ]
                         ]
                     ]
                 }
-                else if (profile instanceof FamilyProfile) {
+                else if (profile && profile instanceof FamilyProfile) {
                     profileDetailsProperties = [
                         accountInformation: [
                             [
@@ -229,8 +229,8 @@ class ProfileController {
             FamilyMemberRequest request = FamilyMemberRequest.get(requestId)
 
             if (request &&
-                (currentUser?.username?.equals(request.requestedIndividual.user.username)) &&
-                (request.requestStatus == FamilyMemberRequestStatus.PENDING)) {
+                (currentUser?.username?.equals(request.familyMemberRequested.user.username)) &&
+                (request.requestStatus == RequestStatus.PENDING)) {
                 def requestDetails = [
                     familyUsername: request.familyRequestedFor.user.username,
                     familyName: request.familyRequestedFor.familyName,
@@ -256,24 +256,47 @@ class ProfileController {
 
     @Secured(['ROLE_INDIVIDUAL'])
     def acceptFamilyMemberRequest() {
-        Long requestId = params.long('id', -1)
+        withFormat {
+            json {
+                Long requestId = params.long('id', -1)
 
-        println "[acceptFamilyMemberRequest] Request Id: $requestId"
+                println "[acceptFamilyMemberRequest] Request Id: $requestId"
 
-        profileService.acceptFamilyMemberRequest(requestId)
+                profileService.acceptFamilyMemberRequest(requestId)
 
-        redirect(controller: 'home', action: 'index')
+                render([redirectUrl: "${grailsApplication.config.grails.serverURL}/home"] as JSON)
+            }
+        }
     }
 
     @Secured(['ROLE_INDIVIDUAL'])
     def rejectFamilyMemberRequest() {
-        Long requestId = params.long('id', -1)
+        withFormat {
+            json {
+                Long requestId = params.long('id', -1)
 
-        println "[rejectFamilyMemberRequest] Request Id: $requestId"
+                println "[rejectFamilyMemberRequest] Request Id: $requestId"
 
-        profileService.rejectFamilyMemberRequest(requestId)
+                profileService.rejectFamilyMemberRequest(requestId)
 
-        redirect(controller: 'home', action: 'index')
+                render([redirectUrl: "${grailsApplication.config.grails.serverURL}/home"] as JSON)
+            }
+        }
+    }
+
+    @Secured(['ROLE_INDIVIDUAL'])
+    def dismissFamilyMemberRequest() {
+        withFormat {
+            json {
+                Long requestId = params.long('id', -1)
+
+                println "[dimsissFamilyMemberRequest] Request Id: $requestId"
+
+                profileService.dismissFamilyMemberRequest(requestId)
+
+                render([redirectUrl: "${grailsApplication.config.grails.serverURL}/home"] as JSON)
+            }
+        }
     }
 
     @Secured(['ROLE_INDIVIDUAL', 'ROLE_FAMILY'])

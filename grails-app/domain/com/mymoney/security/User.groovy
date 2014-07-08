@@ -1,6 +1,6 @@
 package com.mymoney.security
 
-import com.mymoney.profile.Address
+import com.mymoney.profile.Profile
 
 class User {
 
@@ -14,11 +14,14 @@ class User {
     boolean accountLocked
     boolean passwordExpired
 
+    Profile profile
+
     static transients = ['springSecurityService']
 
     static constraints = {
         username blank: false, unique: true
         password blank: false
+        profile nullable: true
     }
 
     static mapping = {

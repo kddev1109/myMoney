@@ -1,18 +1,14 @@
 package com.mymoney.profile
 
-class FamilyMemberRequest {
+import com.mymoney.alert.request.Request
+
+class FamilyMemberRequest extends Request {
 
     FamilyProfile familyRequestedFor
-    IndividualProfile requestedIndividual
-
-    Date dateRequested
-
-    FamilyMemberRequestStatus requestStatus = FamilyMemberRequestStatus.PENDING
+    IndividualProfile familyMemberRequested
 
     static constraints = {
         familyRequestedFor(nullable: false)
-        requestedIndividual(nullable: false)
-        dateRequested(nullable: false)
-        requestStatus(nullable: false)
+        familyMemberRequested(nullable: false)
     }
 }

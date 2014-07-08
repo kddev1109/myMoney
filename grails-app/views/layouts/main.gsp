@@ -36,10 +36,8 @@
             </a>
         </li>
         <li class="dropdown navbar-right">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                <span class="glyphicon glyphicon-user"></span>
-                <g:message code='myMoney.nav.welcome' args='["${((User) Holders.applicationContext.getBean('springSecurityService').currentUser).username}"]'/>
-                <span class="caret"></span>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <span class="glyphicon glyphicon-user"></span> <g:message code='myMoney.nav.welcome' args='["${((User) Holders.applicationContext.getBean('springSecurityService').currentUser).username}"]'/> <span class="caret"></span>
             </a>
             <ul class="dropdown-menu" role="menu">
                 <li>
@@ -54,6 +52,15 @@
                     </a>
                 </li>
             </ul>
+        </li>
+    </ul>
+    <ul class="nav navbar-fixed-bottom">
+        <li class="col-md-12 text-center">
+            <%
+                def c = Calendar.getInstance()
+                c.setTime(new Date())
+            %>
+            Copyright <span class="glyphicon glyphicon-copyright-mark"></span> ${c.get(Calendar.YEAR)}. All Rights Reserved.
         </li>
     </ul>
 </g:if>

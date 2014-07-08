@@ -9,8 +9,12 @@ package com.mymoney.config
  */
 public interface MyMoneyConstants {
 
+    public final String FAMILY_MEMBER_REQUEST_HEADING = 'Family Member Request: '
     public final int FAMILY_MEMBER_REQUEST_TIMEOUT = 30
 
     public final String AUTHORITY_ROLE_INDIVIDUAL = 'ROLE_INDIVIDUAL'
     public final String AUTHORITY_ROLE_FAMILY = 'ROLE_FAMILY'
+
+    public final String ACTION_SEPARATOR = '|'
+    public final String ACTIONS_SEPARATOR = ';'
 }

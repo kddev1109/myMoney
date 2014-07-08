@@ -1,9 +1,14 @@
 package mymoney
 
+import com.mymoney.alert.Alert
+import com.mymoney.alert.AlertAction
+import com.mymoney.alert.AlertActionClass
+import com.mymoney.alert.request.Request
 import com.mymoney.config.MyMoneyConstants
 import com.mymoney.profile.Address
+import com.mymoney.profile.Country
 import com.mymoney.profile.FamilyMemberRequest
-import com.mymoney.profile.FamilyMemberRequestStatus
+import com.mymoney.alert.request.RequestStatus
 import com.mymoney.profile.FamilyProfile
 import com.mymoney.profile.Gender
 import com.mymoney.profile.IndividualProfile
@@ -123,6 +128,7 @@ class ProfileService {
             individualProfile.lastUpdatedDate = now
 
             if (individualProfile.save(flush: true)) {
+                user.profile = individualProfile
                 return individualProfile
             }
             else {
@@ -160,11 +166,11 @@ class ProfileService {
                         List<IndividualProfile> individuals = lookupIndividualsByUsernameOrEmail(it.toString().trim())
 
                         individuals.each { IndividualProfile familyMember ->
-                            FamilyMemberRequest familyMemberRequest = new FamilyMemberRequest()
+                            Request familyMemberRequest = new FamilyMemberRequest()
                             familyMemberRequest.familyRequestedFor = (FamilyProfile) familyProfile
-                            familyMemberRequest.requestedIndividual = familyMember
-                            familyMemberRequest.dateRequested = now
-                            familyMemberRequest.requestStatus = FamilyMemberRequestStatus.PENDING
+                            familyMemberRequest.familyMemberRequested = familyMember
+                            familyMemberRequest.requestedDate = now
+                            familyMemberRequest.requestStatus = RequestStatus.PENDING
 
                             if (!familyMemberRequest.save(flush: true)) {
                                 println "[saveFamilyProfile] Error saving family member request..."
@@ -173,9 +179,41 @@ class ProfileService {
                                 }
                             }
                             else {
+                                // Set up request alert
+                                Alert requestAlert = new Alert()
+
+                                requestAlert.alertRecipient = familyMember.user
+                                requestAlert.alertHeading = MyMoneyConstants.FAMILY_MEMBER_REQUEST_HEADING
+
+                                String familyUsername = ((FamilyMemberRequest) familyMemberRequest).familyRequestedFor.user.username
+                                String familyName = ((FamilyMemberRequest) familyMemberRequest).familyRequestedFor.familyName
+
+                                requestAlert.alertBody = "Review family member request for family '${familyUsername}: ${familyName}'"
+                                requestAlert.alertLink = "${grailsApplication.config.grails.serverURL}/profile/reviewFamilyMemberRequest/${familyMemberRequest.id}"
+
+                                requestAlert.dismissed = false
+
+                                List<AlertAction> actions = []
+
+                                actions.add(new AlertAction('Accept', "${grailsApplication.config.grails.serverURL}/profile/acceptFamilyMemberRequest/${familyMemberRequest.id}", AlertActionClass.SUCCESS))
+                                actions.add(new AlertAction('Reject', "${grailsApplication.config.grails.serverURL}/profile/rejectFamilyMemberRequest/${familyMemberRequest.id}", AlertActionClass.DANGER))
+                                actions.add(new AlertAction('Dismiss', "${grailsApplication.config.grails.serverURL}/profile/dismissFamilyMemberRequest/${familyMemberRequest.id}", AlertActionClass.DEFAULT))
+
+                                requestAlert.actions = actions.collect { it.toString() }.join(MyMoneyConstants.ACTIONS_SEPARATOR)
+
+                                if (!requestAlert.save(flush: true)) {
+                                    println "[saveFamilyProfile] Error saving request alert..."
+                                    requestAlert.errors.allErrors.each { println it }
+                                }
+                                else {
+                                    familyMemberRequest.requestAlert = requestAlert
+                                    familyMemberRequest.save(flush: true)
+                                }
+
                                 def g = new ValidationTagLib()
                                 // Send request email to user
                                 mailService.sendMail {
+                                    async true
                                     to familyMember.email
                                     from grailsApplication.config.myMoney.mail.defaultFrom
                                     subject g.message(code: 'myMoney.registration.mail.familyMemberRequest.subject')
@@ -188,6 +226,8 @@ class ProfileService {
                         }
                     }
                 }
+
+                user.profile = familyProfile
 
                 return familyProfile
             }
@@ -225,7 +265,10 @@ class ProfileService {
                 address.zipCode = properties.zipCode.toString()
             }
             if (properties.country) {
-                address.country = properties.country.toString()
+                address.country = new Country()
+                address.country.shortName = properties.country.toString()
+                address.country.name = properties.country.toString()
+                address.country.save()
             }
 
             if (address.save(flush: true)) {
@@ -249,11 +292,15 @@ class ProfileService {
 
         if (request) {
             // First, accept request status
-            request.requestStatus = FamilyMemberRequestStatus.ACCEPTED
+            request.requestStatus = RequestStatus.ACCEPTED
 
             if (request.save(flush: true)) {
+                if (request.requestAlert) {
+                    request.requestAlert.dismissed = true
+                    request.requestAlert.save(flush: true)
+                }
                 // Add requested individual to family
-                request.familyRequestedFor.addToFamilyMembers(request.requestedIndividual)
+                request.familyRequestedFor.addToFamilyMembers(request.familyMemberRequested)
                 request.save(flush: true)
                 println "[acceptFamilyMemberRequest] Family member request accepted"
             }
@@ -266,10 +313,26 @@ class ProfileService {
         FamilyMemberRequest request = FamilyMemberRequest.get(requestId)
 
         if (request) {
+            if (request.requestAlert) {
+                request.requestAlert.dismissed = true
+                request.requestAlert.save(flush: true)
+            }
             // Reject request status
-            request.requestStatus = FamilyMemberRequestStatus.REJECTED
+            request.requestStatus = RequestStatus.REJECTED
             request.save(flush: true)
             println "[rejectFamilyMemberRequest] Family member request rejected"
+        }
+    }
+
+    void dismissFamilyMemberRequest(Long requestId) {
+        assert requestId
+
+        FamilyMemberRequest request = FamilyMemberRequest.get(requestId)
+
+        if (request && request.requestAlert) {
+            request.requestAlert.dismissed = true
+            request.requestAlert.save(flush: true)
+            println "[dismissFamilyMemberRequest] Family member request dismissed"
         }
     }
 

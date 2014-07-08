@@ -50,7 +50,9 @@
         }
 
         this.familyMemberRequestDecision = function (url) {
-            window.location.href = url;
+            $http.post(url).success(function (data) {
+                window.location.href = data.redirectUrl;
+            });
         }
 
         this.isFormInvalid = {
@@ -266,16 +268,17 @@
             if (angular.isDefined(this.currentPassword)) {
                 $http.post(verifyPasswordUrl,
                            { username: this.profileDetailsProperties.accountInformation[0].value, currentPassword: this.currentPassword }).success(function (data) {
-                    if (data.valid === true || data.valid === 'true' && (profileCtrl.newPassword === profileCtrl.confirmNewPassword)) {
-                        $http.post(updatePasswordUrl, { password: profileCtrl.newPassword }).success(function (data1) {
-                            profileCtrl.invalidCurrentPassword = false;
-                            window.location.href = redirectUrl;
-                        });
-                    }
-                    else {
-                        profileCtrl.invalidCurrentPassword = true;
-                    }
-                });
+                                                                                                                                                       if (data.valid === true || data.valid === 'true' && (profileCtrl.newPassword === profileCtrl.confirmNewPassword)) {
+                                                                                                                                                           $http.post(updatePasswordUrl,
+                                                                                                                                                                      { password: profileCtrl.newPassword }).success(function (data1) {
+                                                                                                                                                                                                                         profileCtrl.invalidCurrentPassword = false;
+                                                                                                                                                                                                                         window.location.href = redirectUrl;
+                                                                                                                                                                                                                     });
+                                                                                                                                                       }
+                                                                                                                                                       else {
+                                                                                                                                                           profileCtrl.invalidCurrentPassword = true;
+                                                                                                                                                       }
+                                                                                                                                                   });
             }
         }
 
@@ -293,12 +296,10 @@
         }
 
         this.isMale = function () {
-            console.debug(this.profileDetailsProperties.individualUserInformation[2].value);
             return (this.profileDetailsProperties.individualUserInformation[2].value === 'Male')
         }
 
         this.isFemale = function () {
-            console.debug(this.profileDetailsProperties.individualUserInformation[2].value);
             return (this.profileDetailsProperties.individualUserInformation[2].value === 'Female')
         }
 
@@ -316,6 +317,87 @@
 
         this.cancelContactInformation = function () {
             this.editMode.contactInformation = false;
+        }
+    }]);
+
+    app.controller('HomeController', ['$http', function ($http) {
+        var homeCtrl = this;
+
+        this.alerts = [];
+
+        this.alertIndex = -1;
+        this.currentAlert = null;
+
+        this.previousAlertDisabled = true;
+        this.nextAlertDisabled = true;
+
+        this.initHome = function (alertsUrl) {
+            this.getAlerts(alertsUrl);
+        }
+
+        this.getAlerts = function (url) {
+            $http.post(url).success(function (data) {
+                homeCtrl.alerts = data.alerts;
+                if (homeCtrl.alerts.length > 0) {
+                    homeCtrl.alertIndex = 0;
+                    homeCtrl.currentAlert = homeCtrl.alerts[homeCtrl.alertIndex];
+                    if (homeCtrl.alerts.length > 1) {
+                        homeCtrl.nextAlertDisabled = false;
+                    }
+                }
+            });
+        }
+
+        this.nextAlert = function () {
+            this.alertIndex++;
+            this.currentAlert = this.alerts[this.alertIndex];
+
+            if (this.alertIndex == (this.alerts.length - 1)) {
+                this.nextAlertDisabled = true;
+            }
+
+            this.previousAlertDisabled = false;
+        }
+
+        this.previousAlert = function () {
+            this.alertIndex--;
+            this.currentAlert = this.alerts[this.alertIndex];
+
+            if (this.alertIndex == 0) {
+                this.previousAlertDisabled = true;
+            }
+
+            this.nextAlertDisabled = false;
+        }
+
+        this.processAlertAction = function (actionText, dismissUrl) {
+            var actionTexts = [];
+
+            angular.forEach(this.currentAlert.actions, function (action) {
+                actionTexts.push(action.text);
+            });
+
+            var actionIndex = actionTexts.indexOf(actionText);
+
+            if (actionIndex > -1) {
+                $http.post(this.currentAlert.actions[actionIndex].link).success(function (data) {
+                    homeCtrl.dismissCurrentAlert(dismissUrl);
+                });
+            }
+        }
+
+        this.dismissCurrentAlert = function (dismissUrl) {
+            this.alerts.splice(this.alertIndex, 1);
+
+            $http.post(dismissUrl, { id: this.currentAlert.id }).success(function (data) {
+                if (homeCtrl.alerts.length > 0) {
+                    homeCtrl.alertIndex = 0;
+                    homeCtrl.currentAlert = homeCtrl.alerts[homeCtrl.alertIndex];
+                }
+                else {
+                    homeCtrl.currentAlert = null;
+                }
+            });
         }
     }]);
 })();
