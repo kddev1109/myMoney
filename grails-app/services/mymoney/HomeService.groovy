@@ -39,6 +39,25 @@ class HomeService {
         return recipientAlerts
     }
 
+    int countAlertsByRecipient(User recipient, boolean includeDismissedAlerts = false) {
+        assert recipient
+
+        String query = """
+            select
+                count(alert.id) as alertCount
+            from
+                com.mymoney.alert.Alert alert inner join alert.alertRecipient recipient
+            where
+                recipient.id = ${recipient.id}${includeDismissedAlerts ? '' : ' and alert.dismissed = false'}
+        """
+
+        println "[countAlertsByRecipient] Query:\n${query}"
+
+        List results = Alert.executeQuery(query)
+
+        return (int) results.size() > 0 ? results[0] : 0
+    }
+
     void dismissAlert(Alert alert) {
         assert alert
 

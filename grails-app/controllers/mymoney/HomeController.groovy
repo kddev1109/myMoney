@@ -16,7 +16,10 @@ class HomeController {
 
     @Secured(['ROLE_INDIVIDUAL', 'ROLE_FAMILY'])
     def index() {
-        render(view: '/home/homePage', model: [activeNav: 'Home', template: '/home/dashboard'])
+        User recipient = (User) springSecurityService.currentUser
+
+        int alertCount = homeService.countAlertsByRecipient(recipient)
+        render(view: '/home/homePage', model: [activeNav: 'Home', template: '/home/dashboard', alertCount: alertCount])
     }
 
     @Secured(['ROLE_INDIVIDUAL', 'ROLE_FAMILY'])

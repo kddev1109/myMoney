@@ -318,6 +318,14 @@
         this.cancelContactInformation = function () {
             this.editMode.contactInformation = false;
         }
+
+        this.deactivateProfile = function() {
+            console.debug('deactivateProfile');
+        }
+
+        this.deleteProfile = function() {
+            console.debug('deleteProfile');
+        }
     }]);
 
     app.controller('HomeController', ['$http', function ($http) {

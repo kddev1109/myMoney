@@ -2,7 +2,7 @@
     <div class="panel-heading">
         <div class="panel-title">
             <h3 class="panel-title">
-                <span class="glyphicon glyphicon-envelope"></span> <g:message code='myMoney.home.dashboard.alerts.heading'/> <span class="badge">{{homeCtrl.alerts.length}}</span>
+                <span class="glyphicon glyphicon-exclamation-sign"></span> <g:message code='myMoney.home.dashboard.alerts.heading'/> <span class="badge">{{homeCtrl.alerts.length}}</span>
             </h3>
         </div>
     </div>

@@ -6,6 +6,17 @@
         </div>
 
         <div class="panel-body">
+            <div class="form-group">
+                <div class="col-md-12 text-right">
+                    <a href="#deactivateProfile" class="btn btn-warning" data-toggle="modal">
+                        <span class="glyphicon glyphicon-pause"></span> <g:message code='myMoney.profile.accountInformation.actions.deactivateProfile'/>
+                    </a>
+                    <a href="#deleteProfile" class="btn btn-danger" data-toggle="modal">
+                        <span class="glyphicon glyphicon-trash"></span> <g:message code='myMoney.profile.accountInformation.actions.deleteProfile'/>
+                    </a>
+                </div>
+            </div>
+
             <div class="form-group" ng-repeat="accountInformationProperty in profileCtrl.profileDetailsProperties.accountInformation">
                 <div class="col-md-4 text-right">
                     <label class="property-label">{{accountInformationProperty.key}}</label>
@@ -32,6 +43,7 @@
                                 <g:message code='myMoney.profile.accountInformation.password.changePassword.invalidCurrentPassword'/>
                             </div>
                         </div>
+
                         <div class="form-group">
                             <div class="col-md-6 text-right">
                                 <label for="currentPassword" class="control-label">
@@ -86,6 +98,71 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="deactivateProfile" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">
+                    <span class="glyphicon glyphicon-question-sign"></span> <g:message
+                    code='myMoney.profile.accountInformation.modals.deactivateProfile.heading'/>
+                </h4>
+            </div>
+
+            <div class="modal-body">
+                <div class="col-md-12 text-center">
+                    <g:message code='myMoney.profile.accountInformation.modals.deactivateProfile.message'/>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <div class="col-md-12 text-right">
+                    <button type="button" class="btn btn-warning" data-dismiss="modal" ng-click="profileCtrl.deactivateProfile()">
+                        <span class="glyphicon glyphicon-pause"></span> <g:message
+                        code='myMoney.profile.accountInformation.modals.deactivateProfile.actions.deactivate'/>
+                    </button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                        <span class="glyphicon glyphicon-remove"></span> <g:message
+                        code='myMoney.profile.accountInformation.modals.deactivateProfile.actions.cancel'/>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="deleteProfile" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">
+                    <span class="glyphicon glyphicon-question-sign"></span> <g:message code='myMoney.profile.accountInformation.modals.deleteProfile.heading'/>
+                </h4>
+            </div>
+
+            <div class="modal-body">
+                <div class="col-md-12 text-center">
+                    <g:message code='myMoney.profile.accountInformation.modals.deleteProfile.message'/>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <div class="col-md-12 text-right">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="profileCtrl.deleteProfile()">
+                        <span class="glyphicon glyphicon-trash"></span> <g:message
+                        code='myMoney.profile.accountInformation.modals.deleteProfile.actions.delete'/>
+                    </button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                        <span class="glyphicon glyphicon-remove"></span> <g:message
+                        code='myMoney.profile.accountInformation.modals.deleteProfile.actions.cancel'/>
+                    </button>
                 </div>
             </div>
         </div>

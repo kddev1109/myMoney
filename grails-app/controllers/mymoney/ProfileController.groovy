@@ -22,8 +22,11 @@ class ProfileController {
     def index() {
         Long userId = params.long('id', -1)
 
-        if (userId) {
+        User currentUser = (User) springSecurityService.currentUser
+
+        if (userId && userId == currentUser.id) {
             User user = User.get(userId)
+
             if (user) {
                 Profile profile = user.profile
 
@@ -112,13 +115,14 @@ class ProfileController {
                     ]
                 }
 
-                println "[index] Profile Details Properties: ${profileDetailsProperties}"
-
                 render(
                     view: '/profile/profileDetails',
                     model: [activeNav: 'Profile', profileDetailsProperties: profileDetailsProperties, profileId: profile.id]
                 )
             }
+        }
+        else {
+            redirect(controller: 'home', action: 'index')
         }
     }
 
