@@ -49,7 +49,7 @@ grails.project.dependency.resolution = {
 
     dependencies {
         // specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes e.g.
-        // runtime 'mysql:mysql-connector-java:5.1.27'
+        runtime 'mysql:mysql-connector-java:5.1.27'
         // runtime 'org.postgresql:postgresql:9.3-1100-jdbc41'
     }
 
@@ -64,6 +64,10 @@ grails.project.dependency.resolution = {
         compile ":twitter-bootstrap:3.1.1.3"
         compile ":quartz:1.0.2"
         compile ":mail:1.0.6"
+        compile ":easygrid:1.6.3"
+        compile ":export:1.5"
+        compile ":jquery-ui:1.10.3"
+        compile ":google-visualization:0.7"
 
         // plugins needed at runtime but not for compilation
         runtime ":hibernate:3.6.10.7" // or ":hibernate4:4.1.11.6"

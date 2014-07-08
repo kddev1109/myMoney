@@ -41,26 +41,29 @@
                                                                           args='["${((User) Holders.applicationContext.getBean('springSecurityService').currentUser).username}"]'/> <span
                 class="caret"></span>
             </a>
-            <ul class="dropdown-menu" role="menu">
-                <li>
-                    <a href="${createLink(controller: 'home', action: 'alertList')}">
-                        <span class="glyphicon glyphicon-exclamation-sign"></span> <g:message code='myMoney.nav.alerts'/> <span
-                        class="badge">${alertCount}</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="${createLink(controller: 'profile', action: 'settings')}">
-                        <span class="glyphicon glyphicon-cog"></span> <g:message code='myMoney.nav.settings'/>
-                    </a>
-                </li>
-                <li class="nav-divider"></li>
-                <li>
-                    <a href="#"
-                       ng-click="mainCtrl.logout('${createLink(controller: 'logout', action: 'index')}', '${createLink(controller: 'home', action: 'index')}')">
-                        <span class="glyphicon glyphicon-off"></span> <g:message code='myMoney.nav.logout'/>
-                    </a>
-                </li>
-            </ul>
+
+            <div class="collapse navbar-collapse">
+                <ul class="dropdown-menu" role="menu">
+                    <li>
+                        <a href="${createLink(controller: 'home', action: 'alertList')}">
+                            <span class="glyphicon glyphicon-exclamation-sign"></span> <g:message code='myMoney.nav.alerts'/> <span
+                            class="badge">${alertCount}</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="${createLink(controller: 'profile', action: 'settings')}">
+                            <span class="glyphicon glyphicon-cog"></span> <g:message code='myMoney.nav.settings'/>
+                        </a>
+                    </li>
+                    <li class="nav-divider"></li>
+                    <li>
+                        <a href="#"
+                           ng-click="mainCtrl.logout('${createLink(controller: 'logout', action: 'index')}', '${createLink(controller: 'home', action: 'index')}')">
+                            <span class="glyphicon glyphicon-off"></span> <g:message code='myMoney.nav.logout'/>
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </li>
     </ul>
     <ul class="nav navbar-fixed-bottom">
