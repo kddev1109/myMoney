@@ -1,13 +1,19 @@
 package mymoney
 
+import com.mymoney.account.Account
+import com.mymoney.account.AccountType
 import com.mymoney.alert.Alert
 import com.mymoney.alert.AlertAction
 import com.mymoney.config.MyMoneyConstants
 import com.mymoney.security.User
 
 import grails.converters.JSON
+
 import grails.plugin.springsecurity.annotation.Secured
 
+import org.grails.plugin.easygrid.Easygrid
+
+@Easygrid
 class HomeController {
 
     def homeService
@@ -19,7 +25,16 @@ class HomeController {
         User recipient = (User) springSecurityService.currentUser
 
         int alertCount = homeService.countAlertsByRecipient(recipient)
-        render(view: '/home/homePage', model: [activeNav: 'Home', template: '/home/dashboard', alertCount: alertCount])
+        render(view: '/home/homePage', model: [activeNav: 'Home', activeSubNav: 'Dashboard', template: '/home/dashboard', alertCount: alertCount])
+    }
+
+    @Secured(['ROLE_INDIVIDUAL', 'ROLE_FAMILY'])
+    def accounts() {
+        User recipient = (User) springSecurityService.currentUser
+
+        int alertCount = homeService.countAlertsByRecipient(recipient)
+
+        render(view: '/home/homePage', model: [activeNav: 'Home', activeSubNav: 'Accounts', template: '/home/accounts', alertCount: alertCount])
     }
 
     @Secured(['ROLE_INDIVIDUAL', 'ROLE_FAMILY'])
@@ -78,6 +93,41 @@ class HomeController {
                 }
 
                 render(results as JSON)
+            }
+        }
+    }
+
+    def accountsListGrid = {
+        domainClass Account
+        gridImpl 'jqgrid'
+        export {
+            export_title 'Accounts'
+        }
+        columns {
+            accountNumber {
+                formatName 'accountNumberDisplay'
+                jqgrid {
+                    editable 'false'
+                }
+            }
+            dateOpened {
+                formatName 'gridDateFormat'
+                jqgrid {
+                    editable 'false'
+                }
+            }
+            accountType {
+                jqgrid {
+                    editable 'false'
+                }
+            }
+            accountBalance {
+                jqgrid {
+                    editable 'false'
+                }
+            }
+            actions {
+                type 'actions'
             }
         }
     }

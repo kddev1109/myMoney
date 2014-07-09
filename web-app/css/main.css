@@ -557,3 +557,14 @@ a.list-group-item.active > .badge,
 .modal-title {
     color: #666666 !important;
 }
+
+.ui-widget-header {
+    color: #FFFFFF !important;
+    background-color: #2a6496 !important;
+    background: #2a6496 !important;
+    border: 1px solid #666666 !important;
+}
+
+.ui-widget {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+}

@@ -1,8 +1,24 @@
+import java.text.SimpleDateFormat
+
 import grails.plugin.springsecurity.SpringSecurityUtils
 
 easygrid {
-    defaults {
+    formats {
+        accountNumberDisplay = { accountNumber ->
+            int length = accountNumber.toString().length()
 
+            String displayAccountNumber = ""
+
+            (length - 4).times { displayAccountNumber +=  "*" }
+
+            return "${displayAccountNumber}${accountNumber.toString().substring(length - 4, length)}"
+        }
+        gridDateFormat = { Date date ->
+            return new SimpleDateFormat('MM/dd/yyyy').format(date)
+        }
+    }
+
+    defaults {
         //un-comment if you use spring security or implement your own with your framework
         securityProvider = { grid, oper ->
             return true

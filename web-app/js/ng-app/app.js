@@ -319,17 +319,19 @@
             this.editMode.contactInformation = false;
         }
 
-        this.deactivateProfile = function() {
+        this.deactivateProfile = function () {
             console.debug('deactivateProfile');
         }
 
-        this.deleteProfile = function() {
+        this.deleteProfile = function () {
             console.debug('deleteProfile');
         }
     }]);
 
     app.controller('HomeController', ['$http', function ($http) {
         var homeCtrl = this;
+
+        this.activeSubNav = 'Dashboard';
 
         this.alerts = [];
 
@@ -339,8 +341,9 @@
         this.previousAlertDisabled = true;
         this.nextAlertDisabled = true;
 
-        this.initHome = function (alertsUrl) {
+        this.initHome = function (alertsUrl, activeSubNav) {
             this.getAlerts(alertsUrl);
+            this.activeSubNav = activeSubNav;
         }
 
         this.getAlerts = function (url) {
@@ -406,6 +409,14 @@
                     homeCtrl.currentAlert = null;
                 }
             });
+        }
+
+        this.setActiveSubNav = function (activeSubNav) {
+            this.activeSubNav = activeSubNav;
+        }
+
+        this.isActiveSubNav = function (subNav) {
+            return (this.activeSubNav === subNav);
         }
     }]);
 })();
