@@ -11,9 +11,14 @@
                 </div>
 
                 <div class="col-md-6">
-                    <input type="email" id="email" name="email" class="form-control" ng-required="registrationCtrl.isIndividualProfileType()"
-                           ng-model="registrationCtrl.profileDetails.email"
-                           ng-change="registrationCtrl.checkEmailAvailability('${createLink(controller: 'profile', action: 'checkEmailAvailability')}')"/>
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-envelope"></span>
+                        </span>
+                        <input type="email" id="email" name="email" class="form-control" ng-required="registrationCtrl.isIndividualProfileType()"
+                               ng-model="registrationCtrl.profileDetails.email"
+                               ng-change="registrationCtrl.checkEmailAvailability('${createLink(controller: 'profile', action: 'checkEmailAvailability')}')"/>
+                    </div>
                 </div>
             </div>
 
@@ -29,14 +34,37 @@
                     <label for="phone" class="control-label"><g:message code='myMoney.registration.contact.individual.phone'/></label>
                 </div>
 
-                <div class="col-md-4">
-                    <input type="text" id="phone" name="phone" class="form-control" ng-model="registrationCtrl.profileDetails.phone"/>
+                <div class="col-md-4 text-left">
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-globe"></span>
+                        </span>
+                        <select id="phoneCountry" name="phoneCountry" class="form-control bfh-countries"
+                                ng-model="registrationCtrl.phoneCountry"
+                                data-country="US">
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-4 col-md-4">
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-earphone"></span>
+                        </span>
+                        <input type="text" id="phone" name="phone" class="form-control bfh-phone"
+                               ng-model="registrationCtrl.profileDetails.phone"
+                               data-country="phoneCountry"/>
+                    </div>
                 </div>
             </div>
 
             <div class="form-group">
                 <div class="col-md-4 text-right">
-                    <label class="control-label"><g:message code='myMoney.registration.contact.individual.address'/></label>
+                    <label class="control-label">
+                        <span class="glyphicon glyphicon-map-marker"></span> <g:message code='myMoney.registration.contact.individual.address'/>
+                    </label>
                 </div>
             </div>
 
@@ -79,7 +107,9 @@
                             </div>
 
                             <div class="col-md-6">
-                                <input type="text" id="state" name="state" class="form-control" ng-model="registrationCtrl.profileDetails.state"/>
+                                <select id="state" name="state" class="form-control bfh-states"
+                                        ng-model="registrationCtrl.profileDetails.state"
+                                        data-country="country"></select>
                             </div>
                         </div>
 
@@ -99,7 +129,16 @@
                             </div>
 
                             <div class="col-md-6">
-                                <input type="text" id="country" name="country" class="form-control" ng-model="registrationCtrl.profileDetails.country"/>
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-globe"></span>
+                                    </span>
+
+                                    <select id="country" name="country" class="form-control bfh-countries"
+                                            ng-model="registrationCtrl.profileDetails.country"
+                                            data-country="US">
+                                    </select>
+                                </div>
                             </div>
                         </div>
                     </div>

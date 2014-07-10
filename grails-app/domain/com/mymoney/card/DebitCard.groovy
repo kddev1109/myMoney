@@ -1,6 +1,6 @@
 package com.mymoney.card
 
-import com.mymoney.account.Account
+import com.mymoney.bankAccount.BankAccount
 
 class DebitCard extends Card {
 
@@ -9,11 +9,11 @@ class DebitCard extends Card {
 
     @Override
     public Double getCardBalance() {
-        return ((Account) super.account).accountBalance
+        return ((BankAccount) super.account).accountBalance
     }
 
     @Override
-    public CardType getCardType() {
-        return CardType.DEBIT
+    public CardCategory getCardCategory() {
+        return CardCategory.DEBIT
     }
 }

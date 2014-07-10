@@ -24,12 +24,12 @@
                         <button type="button" class="btn btn-default" id="individualProfileType" name="profileType"
                                 ng-model="registrationCtrl.profileDetails.profileType"
                                 ng-click="registrationCtrl.setProfileType('Individual')" ng-class="{ 'active' : registrationCtrl.isIndividualProfileType() }">
-                            <span class="glyphicon glyphicon-user"></span> <g:message code='myMoney.registration.account.profileType.individual'/>
+                            <g:message code='myMoney.registration.account.profileType.individual'/>
                         </button>
                         <button type="button" class="btn btn-default" id="familyProfileType" name="profileType"
                                 ng-model="registrationCtrl.profileDetails.profileType"
                                 ng-click="registrationCtrl.setProfileType('Family')" ng-class="{ 'active' : registrationCtrl.isFamilyProfileType() }">
-                            <span class="glyphicon glyphicon-user"></span><span class="glyphicon glyphicon-user"></span> <g:message code='myMoney.registration.account.profileType.family'/>
+                            <g:message code='myMoney.registration.account.profileType.family'/>
                         </button>
                     </div>
                 </div>

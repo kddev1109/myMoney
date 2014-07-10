@@ -22,7 +22,7 @@ class CreditCard extends Card {
     }
 
     @Override
-    public CardType getCardType() {
-        return CardType.CREDIT
+    public CardCategory getCardCategory() {
+        return CardCategory.CREDIT
     }
 }

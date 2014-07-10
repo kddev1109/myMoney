@@ -1,14 +1,16 @@
-package com.mymoney.account
+package com.mymoney.bankAccount
 
 import com.mymoney.profile.IndividualProfile
 
-class Account {
+class BankAccount {
 
     String accountNumber
 
     Date dateOpened
 
-    AccountType accountType
+    BankAccountType accountType
+
+    String accountCurrency
 
     Double accountBalance
 
@@ -21,5 +23,7 @@ class Account {
         dateOpened(nullable: false)
         accountType(nullable: false)
         accountBalance(nullable: false)
+        accountCurrency(nullable: false)
+        accountHolders(nullable: false, minSize: 1)
     }
 }

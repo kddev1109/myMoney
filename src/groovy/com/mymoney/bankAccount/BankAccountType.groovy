@@ -1,15 +1,14 @@
-package com.mymoney.account
+package com.mymoney.bankAccount
 
-public enum AccountType {
+public enum BankAccountType {
 
     CHECKING('Checking'),
     SAVINGS('Savings'),
-    CREDIT_CARD('Credit Card'),
-    DEBIT_CARD('Debit Card')
+    CREDIT_CARD('Credit Card')
 
     private String name
 
-    private AccountType(String name) {
+    private BankAccountType(String name) {
         this.name = name
     }
 

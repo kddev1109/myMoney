@@ -568,3 +568,20 @@ a.list-group-item.active > .badge,
 .ui-widget {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
 }
+
+.month:hover,
+.month:hover > a {
+    background-color: #2a6496;
+    color: #FFFFFF;
+}
+
+.year:hover,
+.year:hover > a {
+    background-color: #2a6496;
+    color: #FFFFFF;
+}
+
+.today {
+    background-color: #2a6496 !important;
+    color: #FFFFFF !important;
+}

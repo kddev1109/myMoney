@@ -265,10 +265,15 @@ class ProfileService {
                 address.zipCode = properties.zipCode.toString()
             }
             if (properties.country) {
-                address.country = new Country()
-                address.country.shortName = properties.country.toString()
-                address.country.name = properties.country.toString()
-                address.country.save()
+                Country country = Country.findByName(properties.country.toString())
+                if (!country) {
+                    country = new Country()
+                    country.shortName = properties.country.toString()
+                    country.name = properties.countryName?.toString()?: properties.country.toString()
+                    country.save()
+                }
+
+                address.country = country
             }
 
             if (address.save(flush: true)) {

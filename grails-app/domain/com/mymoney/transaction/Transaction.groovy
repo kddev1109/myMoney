@@ -1,6 +1,6 @@
 package com.mymoney.transaction
 
-import com.mymoney.account.Account
+import com.mymoney.bankAccount.BankAccount
 
 class Transaction {
 
@@ -15,7 +15,7 @@ class Transaction {
     TransactionDirection transactionDirection
     TransactionStatus transactionStatus
 
-    Account transactionAccount
+    BankAccount transactionAccount
 
     static constraints = {
         transactionID(nullable: false, blank: false, unique: true)

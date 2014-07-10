@@ -51,8 +51,13 @@
                 </div>
 
                 <div class="col-md-3">
-                    <input type="date" id="dateOfBirth" name="dateOfBirth" class="form-control"
-                           ng-model="registrationCtrl.profileDetails.dateOfBirth"/>
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                        <input type="date" id="dateOfBirth" name="dateOfBirth" class="form-control"
+                               ng-model="registrationCtrl.profileDetails.dateOfBirth"/>
+                    </div>
                 </div>
             </div>
         </div>

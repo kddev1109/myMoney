@@ -5,6 +5,7 @@
 </head>
 
 <body>
+<script type="text/javascript" src="${resource(dir: 'js/bootstrap-formhelpers', file: 'bootstrap-formhelpers-currencies.js')}"></script>
 <div class="container-fluid">
     <form method="POST" id="registrationForm" name="registrationForm" class="form-horizontal"
           autocomplete="off" novalidate ng-controller="RegistrationController as registrationCtrl"

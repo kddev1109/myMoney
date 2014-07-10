@@ -1,4 +1,4 @@
-package com.mymoney.account
+package com.mymoney.bankAccount
 
 import grails.test.mixin.TestFor
 import spock.lang.Specification
@@ -6,8 +6,8 @@ import spock.lang.Specification
 /**
  * See the API for {@link grails.test.mixin.domain.DomainClassUnitTestMixin} for usage instructions
  */
-@TestFor(Account)
-class AccountSpec extends Specification {
+@TestFor(BankAccount)
+class BankAccountSpec extends Specification {
 
     def setup() {
     }

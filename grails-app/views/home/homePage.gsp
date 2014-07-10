@@ -6,14 +6,11 @@
 
 <body>
 <div class="container-fluid">
-    <%
-        def alertsUrl = createLink(controller: 'home', action: 'alerts')
-    %>
-    <form method="POST" id="homeForm" name="homeForm" class="form-horizontalr" autocomplete="off" novalidate
-          ng-controller="HomeController as homeCtrl" ng-init="homeCtrl.initHome('${alertsUrl}', '${activeSubNav}')">
-        <div class="row" style="max-width: 1600px; margin: 10px auto;">
-            <div class="col-md-3 text-left">
-                <div class="col-md-8 panel panel-default">
+    <div class="row" style="max-width: 1600px; margin: 10px auto;">
+        <div class="col-md-3 text-left">
+            <form method="POST" id="homeForm" name="homeForm" class="form-horizontal" autocomplete="off" novalidate
+                  ng-controller="HomeController as homeCtrl" ng-init="homeCtrl.initController('${activeSubNav}')">
+                <div class="col-md-10 panel panel-default">
                     <div class="panel-body">
                         <ul class="nav nav-pills nav-stacked">
                             <li ng-class="{ 'active' : homeCtrl.isActiveSubNav('Dashboard') }" ng-click="mainCtrl.setActiveSubNav('Dashboard')">
@@ -23,7 +20,7 @@
                             </li>
                             <li ng-class="{ 'active' : homeCtrl.isActiveSubNav('Accounts') }" ng-click="mainCtrl.setActiveSubNav('Accounts')">
                                 <a href="${createLink(controller: 'home', action: 'accounts')}">
-                                    <span class="glyphicon glyphicon-usd"></span> <g:message code='myMoney.home.nav.accounts'/>
+                                    <span class="glyphicon glyphicon-usd"></span> <g:message code='myMoney.home.nav.bankAccounts'/>
                                 </a>
                             </li>
                             <li ng-class="{ 'active' : homeCtrl.isActiveSubNav('Cards') }" ng-click="mainCtrl.setActiveSubNav('Cards')">
@@ -39,15 +36,15 @@
                         </ul>
                     </div>
                 </div>
-            </div>
-
-            <div class="col-md-9 text-left">
-                <g:if test="${template}">
-                    <g:render template="${template}"/>
-                </g:if>
-            </div>
+            </form>
         </div>
-    </form>
+
+        <div class="col-md-9 text-left">
+            <g:if test="${template}">
+                <g:render template="${template}"/>
+            </g:if>
+        </div>
+    </div>
 </div>
 </body>
 </html>

@@ -2,10 +2,10 @@ package com.mymoney.card
 
 public enum CardType {
 
-    CREDIT('Credit Card'),
-    DEBIT('Debit Card'),
-    CHECK('Check Card'),
-    GIFT('Gift Card')
+    VISA ('Visa'),
+    MASTERCARD ('Master Card'),
+    DISCOVER ('Discover'),
+    AMEX ('American Express')
 
     private String name
 
@@ -14,6 +14,6 @@ public enum CardType {
     }
 
     public String getName() {
-        return this.name
+        return name
     }
 }

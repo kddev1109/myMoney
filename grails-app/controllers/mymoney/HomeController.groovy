@@ -1,7 +1,6 @@
 package mymoney
 
-import com.mymoney.account.Account
-import com.mymoney.account.AccountType
+import com.mymoney.bankAccount.BankAccount
 import com.mymoney.alert.Alert
 import com.mymoney.alert.AlertAction
 import com.mymoney.config.MyMoneyConstants
@@ -98,7 +97,7 @@ class HomeController {
     }
 
     def accountsListGrid = {
-        domainClass Account
+        domainClass BankAccount
         gridImpl 'jqgrid'
         export {
             export_title 'Accounts'

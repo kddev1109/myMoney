@@ -72,6 +72,11 @@ class ProfileController {
                                 type: 'email'
                             ],
                             [
+                                key: g.message(code: 'myMoney.profile.contactInformation.phone'),
+                                value: profile.phone,
+                                type: 'email'
+                            ],
+                            [
                                 key: g.message(code: 'myMoney.profile.contactInformation.address.line1'),
                                 value: profile.address?.line1 ?: '',
                                 type: 'text'
@@ -98,7 +103,7 @@ class ProfileController {
                             ],
                             [
                                 key: g.message(code: 'myMoney.profile.contactInformation.address.country'),
-                                value: profile.address?.country ?: '',
+                                value: profile.address?.country ? profile.address.country.name : '',
                                 type: 'text'
                             ]
                         ]
@@ -117,7 +122,7 @@ class ProfileController {
 
                 render(
                     view: '/profile/profileDetails',
-                    model: [activeNav: 'Profile', profileDetailsProperties: profileDetailsProperties, profileId: profile.id]
+                    model: [activeNav: 'Profile', profileDetailsProperties: profileDetailsProperties, profileId: profile?.id]
                 )
             }
         }

@@ -11,6 +11,8 @@
     <link rel="apple-touch-icon" sizes="114x114" href="${resource(dir: 'images', file: 'apple-touch-icon-retina.png')}">
     <link rel="stylesheet" href="${resource(dir: 'css', file: 'main.css')}" type="text/css">
     <link rel="stylesheet" href="${resource(dir: 'css', file: 'mobile.css')}" type="text/css">
+    <link rel="stylesheet" href="${resource(dir: 'css', file: 'bootstrap-formhelpers.css')}" type="text/css">
+    <link rel="stylesheet" href="${resource(dir: 'css', file: 'bootstrap-formhelpers.min.css')}" type="text/css">
 
     <r:require modules="bootstrap"/>
     <r:require module="app"/>
@@ -20,10 +22,14 @@
 </head>
 
 <body>
+
 <script type="text/javascript" src="${resource(dir: 'js', file: 'angular.min.js')}"></script>
+<script type="text/javascript" src="${resource(dir: 'js/bootstrap-formhelpers', file: 'bootstrap-formhelpers.js')}"></script>
+<script type="text/javascript" src="${resource(dir: 'js/bootstrap-formhelpers', file: 'bootstrap-formhelpers.min.js')}"></script>
 <script type="text/javascript" src="${resource(dir: 'js/ng-app', file: 'app.js')}"></script>
+
 <g:if test="${Holders.applicationContext.getBean('springSecurityService').isLoggedIn()}">
-    <ul class="nav nav-pills navbar-static-top" ng-controller="MainController as mainCtrl" ng-init="mainCtrl.initActiveNav('${activeNav}')">
+    <ul class="nav nav-pills navbar-static-top" ng-controller="MainController as mainCtrl" ng-init="mainCtrl.initController('${activeNav}')">
         <li ng-class="{ 'active' : mainCtrl.isActiveNav('Home') }" ng-click="mainCtrl.setActiveNav('Home')">
             <a href="${createLink(controller: 'home', action: 'index')}">
                 <span class="glyphicon glyphicon-home"></span> <g:message code='myMoney.nav.home'/>
@@ -44,7 +50,7 @@
             <ul class="dropdown-menu" role="menu">
                 <li>
                     <a href="${createLink(controller: 'home', action: 'alertList')}">
-                        <span class="glyphicon glyphicon-exclamation-sign"></span> <g:message code='myMoney.nav.alerts'/> <span
+                        <span class="glyphicon glyphicon-bell"></span> <g:message code='myMoney.nav.alerts'/> <span
                         class="badge">${alertCount}</span>
                     </a>
                 </li>

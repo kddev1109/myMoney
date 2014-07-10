@@ -10,7 +10,7 @@
     app.controller("MainController", ['$http', function ($http) {
         this.activeNav = 'Home';
 
-        this.initActiveNav = function (activeNav) {
+        this.initController = function (activeNav) {
             this.activeNav = activeNav;
         }
 
@@ -39,6 +39,8 @@
 
         this.pageLoad = true;
 
+        this.phoneCountry = 'US';
+
         this.familyMemberRequestDetails = {};
 
         this.initFamilyMemberRequest = function (requestDetails) {
@@ -61,7 +63,10 @@
             passwordMatchCheck: false
         };
 
-        this.profileDetails = {};
+        this.profileDetails = {
+            country: 'US'
+        };
+
         this.individualsLookedUp = {
             individuals: []
         };
@@ -225,6 +230,10 @@
                 this.profileDetails.dateOfBirth = Date.parse(this.profileDetails.dateOfBirth);
             }
 
+            if (this.profileDetails.country != null && this.profileDetails.country != "" && !angular.isUndefined(this.profileDetails.country)) {
+                this.profileDetails.countryName = BFHCountriesList[this.profileDetails.country];
+            }
+
             this.profileDetails.familyMemberRequests = this.familyMemberRequests;
 
             $http.post(url, this.profileDetails).success(function (data) {
@@ -266,19 +275,25 @@
 
         this.updatePassword = function (verifyPasswordUrl, updatePasswordUrl, redirectUrl) {
             if (angular.isDefined(this.currentPassword)) {
-                $http.post(verifyPasswordUrl,
-                           { username: this.profileDetailsProperties.accountInformation[0].value, currentPassword: this.currentPassword }).success(function (data) {
-                                                                                                                                                       if (data.valid === true || data.valid === 'true' && (profileCtrl.newPassword === profileCtrl.confirmNewPassword)) {
-                                                                                                                                                           $http.post(updatePasswordUrl,
-                                                                                                                                                                      { password: profileCtrl.newPassword }).success(function (data1) {
-                                                                                                                                                                                                                         profileCtrl.invalidCurrentPassword = false;
-                                                                                                                                                                                                                         window.location.href = redirectUrl;
-                                                                                                                                                                                                                     });
-                                                                                                                                                       }
-                                                                                                                                                       else {
-                                                                                                                                                           profileCtrl.invalidCurrentPassword = true;
-                                                                                                                                                       }
-                                                                                                                                                   });
+                var _data = {
+                    username: this.profileDetailsProperties.accountInformation[0].value,
+                    currentPassword: this.currentPassword
+                };
+
+                $http.post(verifyPasswordUrl, _data).success(function (data) {
+                    if (data.valid === true || data.valid === 'true' && (profileCtrl.newPassword === profileCtrl.confirmNewPassword)) {
+                        var _data2 = {
+                            password: profileCtrl.newPassword
+                        };
+                        $http.post(updatePasswordUrl, _data2).success(function (data1) {
+                            profileCtrl.invalidCurrentPassword = false;
+                            window.location.href = redirectUrl;
+                        });
+                    }
+                    else {
+                        profileCtrl.invalidCurrentPassword = true;
+                    }
+                });
             }
         }
 
@@ -328,10 +343,24 @@
         }
     }]);
 
-    app.controller('HomeController', ['$http', function ($http) {
-        var homeCtrl = this;
-
+    app.controller('HomeController', function () {
         this.activeSubNav = 'Dashboard';
+
+        this.initController = function (activeSubNav) {
+            this.activeSubNav = activeSubNav;
+        }
+
+        this.setActiveSubNav = function (activeSubNav) {
+            this.activeSubNav = activeSubNav;
+        }
+
+        this.isActiveSubNav = function (subNav) {
+            return (this.activeSubNav === subNav);
+        }
+    });
+
+    app.controller('AlertController', ['$http', function ($http) {
+        var alertCtrl = this;
 
         this.alerts = [];
 
@@ -341,19 +370,18 @@
         this.previousAlertDisabled = true;
         this.nextAlertDisabled = true;
 
-        this.initHome = function (alertsUrl, activeSubNav) {
+        this.initController = function (alertsUrl) {
             this.getAlerts(alertsUrl);
-            this.activeSubNav = activeSubNav;
         }
 
         this.getAlerts = function (url) {
             $http.post(url).success(function (data) {
-                homeCtrl.alerts = data.alerts;
-                if (homeCtrl.alerts.length > 0) {
-                    homeCtrl.alertIndex = 0;
-                    homeCtrl.currentAlert = homeCtrl.alerts[homeCtrl.alertIndex];
-                    if (homeCtrl.alerts.length > 1) {
-                        homeCtrl.nextAlertDisabled = false;
+                alertCtrl.alerts = data.alerts;
+                if (alertCtrl.alerts.length > 0) {
+                    alertCtrl.alertIndex = 0;
+                    alertCtrl.currentAlert = alertCtrl.alerts[alertCtrl.alertIndex];
+                    if (alertCtrl.alerts.length > 1) {
+                        alertCtrl.nextAlertDisabled = false;
                     }
                 }
             });
@@ -392,7 +420,7 @@
 
             if (actionIndex > -1) {
                 $http.post(this.currentAlert.actions[actionIndex].link).success(function (data) {
-                    homeCtrl.dismissCurrentAlert(dismissUrl);
+                    alertCtrl.dismissCurrentAlert(dismissUrl);
                 });
             }
         }
@@ -401,22 +429,25 @@
             this.alerts.splice(this.alertIndex, 1);
 
             $http.post(dismissUrl, { id: this.currentAlert.id }).success(function (data) {
-                if (homeCtrl.alerts.length > 0) {
-                    homeCtrl.alertIndex = 0;
-                    homeCtrl.currentAlert = homeCtrl.alerts[homeCtrl.alertIndex];
+                if (alertCtrl.alerts.length > 0) {
+                    alertCtrl.alertIndex = 0;
+                    alertCtrl.currentAlert = alertCtrl.alerts[alertCtrl.alertIndex];
                 }
                 else {
-                    homeCtrl.currentAlert = null;
+                    alertCtrl.currentAlert = null;
                 }
             });
         }
+    }]);
 
-        this.setActiveSubNav = function (activeSubNav) {
-            this.activeSubNav = activeSubNav;
-        }
+    app.controller('BankAccountController', ['$http', function ($http) {
+        var bankAccountCtrl = this;
 
-        this.isActiveSubNav = function (subNav) {
-            return (this.activeSubNav === subNav);
+        this.accountDetails = {};
+        this.accountTypes = [];
+
+        this.initController = function (accountTypes) {
+            this.accountTypes = JSON.parse(accountTypes);
         }
     }]);
 })();
