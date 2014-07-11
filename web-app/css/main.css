@@ -238,6 +238,9 @@ input:invalid:focus, select:invalid:focus, textarea:invalid:focus {
 .cottoncandy {
     color: #FFCDF1;
 }
+.ivory {
+    color: #FFF8D7;
+}
 
 .dropdown-submenu {
     position: relative;

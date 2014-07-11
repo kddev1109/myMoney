@@ -62,7 +62,7 @@
                         <span class="glyphicon glyphicon-stop wine"></span> <g:message code='myMoney.nav.themes.wine'/>
                     </a>
                     <a ng-show="mainCtrl.theme.name === 'wine'" href="#">
-                        <span class="glyphicon glyphicon-stop sapphire"></span> <g:message code='myMoney.nav.themes.sapphire'/>
+                        <span class="glyphicon glyphicon-stop wine"></span> <g:message code='myMoney.nav.themes.wine'/>
                     </a>
                 </li>
                 <li ng-class="{ 'disabled' : mainCtrl.theme.name === 'rainforest' }">
@@ -71,7 +71,7 @@
                         <span class="glyphicon glyphicon-stop rainforest"></span> <g:message code='myMoney.nav.themes.rainforest'/>
                     </a>
                     <a ng-show="mainCtrl.theme.name === 'rainforest'" href="#">
-                        <span class="glyphicon glyphicon-stop sapphire"></span> <g:message code='myMoney.nav.themes.sapphire'/>
+                        <span class="glyphicon glyphicon-stop rainforest"></span> <g:message code='myMoney.nav.themes.rainforest'/>
                     </a>
                 </li>
                 <li ng-class="{ 'disabled' : mainCtrl.theme.name === 'cotton-candy' }">
@@ -80,7 +80,16 @@
                         <span class="glyphicon glyphicon-stop cottoncandy"></span> <g:message code='myMoney.nav.themes.cottoncandy'/>
                     </a>
                     <a ng-show="mainCtrl.theme.name === 'cotton-candy'" href="#">
-                        <span class="glyphicon glyphicon-stop sapphire"></span> <g:message code='myMoney.nav.themes.sapphire'/>
+                        <span class="glyphicon glyphicon-stop cottoncandy"></span> <g:message code='myMoney.nav.themes.cottoncandy'/>
+                    </a>
+                </li>
+                <li ng-class="{ 'disabled' : mainCtrl.theme.name === 'ivory' }">
+                    <a ng-show="mainCtrl.theme.name !== 'ivory'" href="#saveTheme"
+                       ng-click="mainCtrl.previewSelectedTheme('ivory', 'Ivory')" data-toggle="modal">
+                        <span class="glyphicon glyphicon-stop ivory"></span> <g:message code='myMoney.nav.themes.ivory'/>
+                    </a>
+                    <a ng-show="mainCtrl.theme.name === 'ivory'" href="#">
+                        <span class="glyphicon glyphicon-stop ivory"></span> <g:message code='myMoney.nav.themes.ivory'/>
                     </a>
                 </li>
             </ul>

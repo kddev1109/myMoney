@@ -269,7 +269,7 @@ class ProfileService {
                 address.zipCode = properties.zipCode.toString()
             }
             if (properties.country) {
-                Country country = Country.findByName(properties.country.toString())
+                Country country = Country.findByShortName(properties.country.toString())
                 if (!country) {
                     country = new Country()
                     country.shortName = properties.country.toString()

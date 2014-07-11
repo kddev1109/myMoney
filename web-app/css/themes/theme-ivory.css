@@ -1,0 +1,226 @@
+/*
+ * @(#)theme-ivory.css
+ * Copyright (c) 2008-2014 Brinqa. All rights reserved.
+ * BRINQA PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ */
+
+html {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    background-color: #FFF8D7 !important;
+    min-width: 980px;
+    font-size: 14px;
+}
+
+.page {
+    min-height: 100%;
+    height: auto !important;
+}
+
+.nav {
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+    background-color: #666666;
+}
+
+.nav > li {
+    position: relative;
+    display: block;
+}
+
+.nav > li > a {
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+    color: #FFFFFF !important;
+}
+
+.nav > li > a:hover,
+.nav > li > a:focus {
+    text-decoration: none;
+    background-color: #FFF8D7 !important;
+    color: #666666 !important;
+}
+
+.nav > li.disabled > a {
+    color: #999;
+}
+
+.nav > li.disabled > a:hover,
+.nav > li.disabled > a:focus {
+    color: #999;
+    text-decoration: none;
+    cursor: not-allowed;
+    background-color: transparent;
+}
+
+.nav .open > a,
+.nav .open > a:hover,
+.nav .open > a:focus {
+    color: #666666 !important;
+    background-color: #FFF8D7 !important;
+    border-color: #FFF8D7 !important;
+}
+
+.nav .nav-divider {
+    height: 1px;
+    margin: 9px 0;
+    overflow: hidden;
+    background-color: #e5e5e5;
+}
+
+.nav > li > a > img {
+    max-width: none;
+}
+
+.nav {
+    padding: 2px 2px 2px 10px !important;
+}
+
+.nav-pills > li {
+    float: left;
+}
+
+.nav-pills > li > a {
+    border-radius: 4px;
+}
+
+.nav-pills > li + li {
+    margin-left: 2px;
+}
+
+.nav-pills > li.active > a,
+.nav-pills > li.active > a:hover,
+.nav-pills > li.active > a:focus {
+    color: #666666 !important;
+    background-color: #FFF8D7 !important;
+}
+
+a.list-group-item.active > .badge,
+.nav-pills > .active > a > .badge {
+    color: #666666 !important;
+    background-color: #FFF8D7 !important;
+}
+
+.nav-pills > li > a > .badge {
+    margin-left: 3px;
+}
+
+.nav-pills a:hover,
+.dropdown a:hover {
+    color: #666666 !important;
+    background-color: #FFF8D7 !important;
+}
+
+.well {
+    background-color: #FAFAFA !important;
+}
+
+.property-label {
+    color: #FFF8D7 !important;
+}
+
+.property-value {
+    color: #FFF8D7 !important;
+}
+
+.control-label {
+    color: #FFF8D7 !important;
+}
+
+.form-control {
+    color: #666666 !important;
+}
+
+.panel-title {
+    color: #FFF8D7 !important;
+}
+
+.modal-title {
+    color: #FFF8D7 !important;
+}
+
+.ui-widget-header {
+    color: #666666 !important;
+    background-color: #FFF8D7 !important;
+    background: #FFF8D7 !important;
+    border: 1px solid #FFFFFF !important;
+}
+
+.ui-jqgrid-sortable {
+    color: #666666 !important;
+}
+
+.ui-search-oper > a {
+    color: #666666 !important;
+}
+
+.ui-pg-table > tbody > tr > td {
+    color: #666666 !important;
+}
+
+.ui-pg-div > span {
+    color: #666666 !important;
+}
+
+.ui-icon .ui-icon-document {
+    color: #666666 !important;
+}
+
+.ui-widget {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+}
+
+.month:hover,
+.month:hover > a {
+    background-color: #FFF8D7 !important;
+    color: #666666 !important;
+}
+
+.year:hover,
+.year:hover > a {
+    background-color: #FFF8D7 !important;
+    color: #666666 !important;
+}
+
+.today {
+    background-color: #FFF8D7 !important;
+    color: #666666 !important;
+}
+
+.btn-primary,
+.btn-primary > a,
+.btn-primary > button,
+.btn-primary > input {
+    background-color: #FFF8D7 !important;
+    color: #666666 !important;
+}
+
+.btn-primary:hover,
+.btn-primary > a:hover,
+.btn-primary > button:hover,
+.btn-primary > input:hover {
+    background-color: #FEFFB9 !important;
+    color: #666666 !important;
+}
+
+.panel,
+.panel-body,
+.modal-content,
+.modal-body {
+    color: #FFF8D7 !important;
+    background-color: #666666 !important;
+}
+
+.panel-heading,
+.modal-header,
+.modal-footer,
+.modal-footer > div,
+.modal-title {
+    color: #FFF8D7 !important;
+    background-color: #666666 !important;
+}
