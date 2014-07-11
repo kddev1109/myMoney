@@ -187,7 +187,7 @@ class ProfileService {
                                 Alert requestAlert = new Alert()
 
                                 requestAlert.alertRecipient = familyMember.user
-                                requestAlert.alertHeading = MyMoneyConstants.FAMILY_MEMBER_REQUEST_HEADING
+                                requestAlert.alertHeading = MyMoneyConstants.ALERT_HEADING_FAMILY_MEMBER_REQUEST
 
                                 String familyUsername = ((FamilyMemberRequest) familyMemberRequest).familyRequestedFor.user.username
                                 String familyName = ((FamilyMemberRequest) familyMemberRequest).familyRequestedFor.familyName

@@ -13,7 +13,8 @@ public interface MyMoneyConstants {
 
     public final Theme THEME_DEFAULT = Theme.SAPPHIRE
 
-    public final String FAMILY_MEMBER_REQUEST_HEADING = 'Family Member Request: '
+    public final String ALERT_HEADING_FAMILY_MEMBER_REQUEST = 'Family Member Request: '
+
     public final int FAMILY_MEMBER_REQUEST_TIMEOUT = 30
 
     public final String AUTHORITY_ROLE_INDIVIDUAL = 'ROLE_INDIVIDUAL'
