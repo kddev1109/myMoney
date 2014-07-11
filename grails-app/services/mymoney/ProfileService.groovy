@@ -122,6 +122,8 @@ class ProfileService {
                 individualProfile.address = address
             }
 
+            individualProfile.theme = MyMoneyConstants.THEME_DEFAULT
+
             Date now = new Date()
 
             individualProfile.createdDate = now
@@ -156,6 +158,8 @@ class ProfileService {
             if (properties?.familyName) {
                 familyProfile.familyName = properties.familyName.toString()
             }
+
+            familyProfile.theme = MyMoneyConstants.THEME_DEFAULT
 
             familyProfile.createdDate = now
             familyProfile.lastUpdatedDate = now

@@ -1,5 +1,7 @@
 package com.mymoney.config
 
+import com.mymoney.profile.Theme
+
 /**
  * Created with IntelliJ IDEA.
  * User: kuldeep1109
@@ -8,6 +10,8 @@ package com.mymoney.config
  * To change this template use File | Settings | File Templates.
  */
 public interface MyMoneyConstants {
+
+    public final Theme THEME_DEFAULT = Theme.SAPPHIRE
 
     public final String FAMILY_MEMBER_REQUEST_HEADING = 'Family Member Request: '
     public final int FAMILY_MEMBER_REQUEST_TIMEOUT = 30

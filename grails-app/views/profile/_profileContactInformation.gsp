@@ -10,7 +10,7 @@
                     <label class="property-label">{{contactInformationProperty.key}}</label>
                 </div>
 
-                <div class="col-md-6" ng-hide="profileCtrl.editMode.contactInformation">
+                <div class="col-md-6 property-value" ng-hide="profileCtrl.editMode.contactInformation">
                     {{contactInformationProperty.value}}
                 </div>
 

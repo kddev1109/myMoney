@@ -1,10 +1,12 @@
 package mymoney
 
+import com.mymoney.config.MyMoneyConstants
 import com.mymoney.profile.FamilyMemberRequest
 import com.mymoney.alert.request.RequestStatus
 import com.mymoney.profile.FamilyProfile
 import com.mymoney.profile.IndividualProfile
 import com.mymoney.profile.Profile
+import com.mymoney.profile.Theme
 import com.mymoney.security.User
 
 import java.text.SimpleDateFormat
@@ -360,6 +362,70 @@ class ProfileController {
                         else {
                             println "[updatePassword] Error updating user password..."
                             currentUser.errors.allErrors.each { println it }
+                        }
+                    }
+                }
+
+                render(results as JSON)
+            }
+        }
+    }
+
+    @Secured('permitAll')
+    def initTheme() {
+        withFormat {
+            json {
+                def theme = [
+                    name: MyMoneyConstants.THEME_DEFAULT.name,
+                    title: MyMoneyConstants.THEME_DEFAULT.title
+                ]
+
+                String previewThemeName = params.name?.toString()
+                String previewThemeTitle = params.title?.toString()
+
+                if (previewThemeName && previewThemeTitle) {
+                    theme.name = previewThemeName
+                    theme.title = previewThemeTitle
+                }
+                else {
+                    User currentUser = (User) springSecurityService.currentUser
+
+                    if (currentUser && currentUser.profile?.theme) {
+                        theme.name = currentUser.profile.theme.name
+                        theme.title = currentUser.profile.theme.title
+                    }
+                }
+
+                println "[initTheme] Theme: ${theme}"
+                render(theme as JSON)
+            }
+        }
+    }
+
+    @Secured(['ROLE_INDIVIDUAL', 'ROLE_FAMILY'])
+    def saveTheme() {
+        withFormat {
+            json {
+                def results = [
+                    success: false
+                ]
+
+                String themeName = request.JSON?.theme?.toString()
+
+                if (themeName) {
+                    Theme theme = Theme.values().find { it.name.equals(themeName) }
+
+                    if (theme) {
+                        User currentUser = (User) springSecurityService.currentUser
+
+                        if (currentUser.profile) {
+                            currentUser.profile.theme = theme
+                            if (currentUser.profile.save(flush: true)) {
+                                results.success = true
+                            }
+                            else {
+                                currentUser.profile.errors.allErrors.each { println it }
+                            }
                         }
                     }
                 }

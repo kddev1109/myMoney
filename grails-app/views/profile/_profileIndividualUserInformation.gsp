@@ -10,7 +10,7 @@
                     <label class="property-label">{{individualUserInformationProperty.key}}</label>
                 </div>
 
-                <div class="col-md-6" ng-hide="profileCtrl.editMode.individualUserInformation">
+                <div class="col-md-6 property-value" ng-hide="profileCtrl.editMode.individualUserInformation">
                     {{individualUserInformationProperty.value}}
                 </div>
 

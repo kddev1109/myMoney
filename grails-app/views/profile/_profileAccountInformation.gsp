@@ -22,7 +22,7 @@
                     <label class="property-label">{{accountInformationProperty.key}}</label>
                 </div>
 
-                <div class="col-md-6">
+                <div class="col-md-6 property-value">
                     {{accountInformationProperty.value}}
                 </div>
             </div>

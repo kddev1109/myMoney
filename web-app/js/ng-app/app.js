@@ -8,10 +8,22 @@
     });
 
     app.controller("MainController", ['$http', function ($http) {
+        var mainCtrl = this;
+
         this.activeNav = 'Home';
 
-        this.initController = function (activeNav) {
+        this.theme = {
+            name: 'sapphire',
+            title: 'Sapphire'
+        };
+
+        this.themeBeforePreview = {};
+
+        this.initController = function (activeNav, initThemeUrl) {
             this.activeNav = activeNav;
+            $http.post(initThemeUrl).success(function (data) {
+                mainCtrl.theme = data;
+            });
         }
 
         this.logout = function (url, redirectUrl) {
@@ -26,6 +38,24 @@
 
         this.isActiveNav = function (nav) {
             return (this.activeNav === nav);
+        }
+
+        this.previewSelectedTheme = function (themeName, themeTitle) {
+            this.themeBeforePreview.name = this.theme.name;
+            this.themeBeforePreview.title = this.theme.title;
+            this.theme.name = themeName;
+            this.theme.title = themeTitle;
+        }
+
+        this.resetTheme = function() {
+            this.theme.name = this.themeBeforePreview.name;
+            this.theme.title = this.themeBeforePreview.title;
+        }
+
+        this.savePreviewedTheme = function (url) {
+            $http.post(url, { theme: this.theme.name }).success(function(data) {
+
+            });
         }
     }]);
 

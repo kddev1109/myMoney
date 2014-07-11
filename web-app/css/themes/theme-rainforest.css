@@ -1,0 +1,201 @@
+html {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    background-color: #296F00 !important;
+    min-width: 980px;
+    font-size: 14px;
+}
+
+.page {
+    min-height: 100%;
+    height: auto !important;
+}
+
+.nav {
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+    background-color: #FFFFFF;
+}
+
+.nav > li {
+    position: relative;
+    display: block;
+}
+
+.nav > li > a {
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+    color: #666666 !important;
+}
+
+.nav > li > a:hover,
+.nav > li > a:focus {
+    text-decoration: none;
+    background-color: #296F00 !important;
+    color: #FFFFFF !important;
+}
+
+.nav > li.disabled > a {
+    color: #999;
+}
+
+.nav > li.disabled > a:hover,
+.nav > li.disabled > a:focus {
+    color: #999;
+    text-decoration: none;
+    cursor: not-allowed;
+    background-color: transparent;
+}
+
+.nav .open > a,
+.nav .open > a:hover,
+.nav .open > a:focus {
+    color: #ffffff !important;
+    background-color: #296F00 !important;
+    border-color: #296F00 !important;
+}
+
+.nav .nav-divider {
+    height: 1px;
+    margin: 9px 0;
+    overflow: hidden;
+    background-color: #e5e5e5;
+}
+
+.nav > li > a > img {
+    max-width: none;
+}
+
+.nav {
+    padding: 2px 2px 2px 10px !important;
+}
+
+.nav-pills > li {
+    float: left;
+}
+
+.nav-pills > li > a {
+    border-radius: 4px;
+}
+
+.nav-pills > li + li {
+    margin-left: 2px;
+}
+
+.nav-pills > li.active > a,
+.nav-pills > li.active > a:hover,
+.nav-pills > li.active > a:focus {
+    color: #FFFFFF !important;
+    background-color: #296F00 !important;
+}
+
+a.list-group-item.active > .badge,
+.nav-pills > .active > a > .badge {
+    color: #FFFFFF !important;
+    background-color: #296F00 !important;
+}
+
+.nav-pills > li > a > .badge {
+    margin-left: 3px;
+}
+
+.nav-pills a:hover,
+.dropdown a:hover {
+    color: #FFFFFF !important;
+    background-color: #296F00 !important;
+}
+
+.well {
+    background-color: #FAFAFA !important;
+}
+
+.property-label {
+    color: #296F00 !important;
+}
+
+.control-label {
+    color: #296F00 !important;
+}
+
+.form-control {
+    color: #666666 !important;
+}
+
+.panel-title {
+    color: #296F00 !important;
+}
+
+.modal-title {
+    color: #296F00 !important;
+}
+
+.ui-widget-header {
+    color: #FFFFFF !important;
+    background-color: #296F00 !important;
+    background: #296F00 !important;
+    border: 1px solid #666666 !important;
+}
+
+.ui-jqgrid-sortable {
+    color: #580042;
+}
+
+.ui-search-oper > a {
+    color: #580042 !important;
+}
+
+.ui-pg-table > tbody > tr > td {
+    color: #580042 !important;
+}
+
+.ui-pg-div > span {
+    color: #580042 !important;
+}
+
+.ui-icon .ui-icon-document {
+    color: #580042 !important;
+}
+
+.ui-widget {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+}
+
+.month:hover,
+.month:hover > a {
+    background-color: #296F00;
+    color: #FFFFFF;
+}
+
+.year:hover,
+.year:hover > a {
+    background-color: #296F00;
+    color: #FFFFFF;
+}
+
+.today {
+    background-color: #296F00 !important;
+    color: #FFFFFF !important;
+}
+
+.btn-primary,
+.btn-primary > a,
+.btn-primary > button,
+.btn-primary > input {
+    background-color: #296F00 !important;
+}
+
+.btn-primary:hover,
+.btn-primary > a:hover,
+.btn-primary > button:hover,
+.btn-primary > input:hover {
+    background-color: #418D00 !important;
+}
+
+.form-control {
+    color: #296F00 !important;
+}

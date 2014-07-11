@@ -20,7 +20,7 @@
     <div class="panel-heading">
         <div class="panel-title">
             <h3 class="panel-title">
-                <span class="glyphicon glyphicon-stats"></span> <g:message code='myMoney.home.dashboard.metrics.heading'/>
+                <span class="glyphicon glyphicon-dashboard"></span> <g:message code='myMoney.home.dashboard.metrics.heading'/>
             </h3>
         </div>
     </div>
@@ -32,7 +32,7 @@
     <div class="panel-heading">
         <div class="panel-title">
             <h3 class="panel-title">
-                <span class="glyphicon glyphicon-dashboard"></span> <g:message code='myMoney.home.dashboard.visualizations.heading'/>
+                <span class="glyphicon glyphicon-stats"></span> <g:message code='myMoney.home.dashboard.visualizations.heading'/>
             </h3>
         </div>
     </div>

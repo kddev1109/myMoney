@@ -9,7 +9,7 @@
     <div class="row" style="max-width: 1600px; margin: 10px auto;">
         <div class="col-md-3 text-left">
             <form method="POST" id="homeForm" name="homeForm" class="form-horizontal" autocomplete="off" novalidate
-                  ng-controller="HomeController as homeCtrl" ng-init="homeCtrl.initController('${activeSubNav}')">
+                  ng-controller="HomeController as homeCtrl" ng-init="homeCtrl.initController('${activeSubNav}')" ng-cloak>
                 <div class="col-md-10 panel panel-default">
                     <div class="panel-body">
                         <ul class="nav nav-pills nav-stacked">

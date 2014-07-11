@@ -9,8 +9,9 @@
                 <div class="col-md-12 text-right">
                     <input type="submit" name="register" class="btn btn-primary" value="${message(code: 'myMoney.registration.actions.register')}"
                            ng-disabled="registrationForm.$invalid || registrationCtrl.checkIfFormIsInvalid()"/>
-                    <a href="${createLink(controller: 'home', action: 'index')}" class="btn btn-default"><g:message
-                        code='myMoney.registration.actions.cancel'/></a>
+                    <a href="${createLink(controller: 'home', action: 'index')}" class="btn btn-default">
+                        <g:message code='myMoney.registration.actions.cancel'/>
+                    </a>
                 </div>
             </div>
 
