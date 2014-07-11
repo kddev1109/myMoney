@@ -123,7 +123,7 @@
         </li>
     </ul>
     <ul class="nav navbar-fixed-bottom">
-        <li class="col-md-12 text-center">
+        <li class="col-md-12 text-center property-value">
             <%
                 def c = Calendar.getInstance()
                 c.setTime(new Date())
