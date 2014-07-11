@@ -1,10 +1,16 @@
+/*
+ * @(#)theme-monochrome.css
+ * Copyright (c) 2008-2014 Brinqa. All rights reserved.
+ * BRINQA PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ */
+
 html {
     width: 100%;
     height: 100%;
 }
 
 body {
-    background-color: #5B0042 !important;
+    background-color: #000000 !important;
     min-width: 980px;
     font-size: 14px;
 }
@@ -36,7 +42,7 @@ body {
 .nav > li > a:hover,
 .nav > li > a:focus {
     text-decoration: none;
-    background-color: #5B0042 !important;
+    background-color: #000000 !important;
     color: #FFFFFF !important;
 }
 
@@ -56,8 +62,8 @@ body {
 .nav .open > a:hover,
 .nav .open > a:focus {
     color: #ffffff !important;
-    background-color: #5B0042 !important;
-    border-color: #5B0042 !important;
+    background-color: #000000 !important;
+    border-color: #000000 !important;
 }
 
 .nav .nav-divider {
@@ -91,13 +97,13 @@ body {
 .nav-pills > li.active > a:hover,
 .nav-pills > li.active > a:focus {
     color: #FFFFFF !important;
-    background-color: #5B0042 !important;
+    background-color: #000000 !important;
 }
 
 a.list-group-item.active > .badge,
 .nav-pills > .active > a > .badge {
     color: #FFFFFF !important;
-    background-color: #5B0042 !important;
+    background-color: #000000 !important;
 }
 
 .nav-pills > li > a > .badge {
@@ -107,7 +113,7 @@ a.list-group-item.active > .badge,
 .nav-pills a:hover,
 .dropdown a:hover {
     color: #FFFFFF !important;
-    background-color: #5B0042 !important;
+    background-color: #000000 !important;
 }
 
 .well {
@@ -115,11 +121,11 @@ a.list-group-item.active > .badge,
 }
 
 .property-label {
-    color: #5B0042 !important;
+    color: #000000 !important;
 }
 
 .control-label {
-    color: #5B0042 !important;
+    color: #000000 !important;
 }
 
 .form-control {
@@ -127,38 +133,38 @@ a.list-group-item.active > .badge,
 }
 
 .panel-title {
-    color: #5B0042 !important;
+    color: #000000 !important;
 }
 
 .modal-title {
-    color: #5B0042 !important;
+    color: #000000 !important;
 }
 
 .ui-widget-header {
     color: #FFFFFF !important;
-    background-color: #5B0042 !important;
-    background: #5B0042 !important;
+    background-color: #000000 !important;
+    background: #000000 !important;
     border: 1px solid #666666 !important;
 }
 
 .ui-jqgrid-sortable {
-    color: #5B0042;
+    color: #000000;
 }
 
 .ui-search-oper > a {
-    color: #5B0042 !important;
+    color: #000000 !important;
 }
 
 .ui-pg-table > tbody > tr > td {
-    color: #5B0042 !important;
+    color: #000000 !important;
 }
 
 .ui-pg-div > span {
-    color: #5B0042 !important;
+    color: #000000 !important;
 }
 
 .ui-icon .ui-icon-document {
-    color: #5B0042 !important;
+    color: #000000 !important;
 }
 
 .ui-widget {
@@ -167,18 +173,18 @@ a.list-group-item.active > .badge,
 
 .month:hover,
 .month:hover > a {
-    background-color: #5B0042;
+    background-color: #000000;
     color: #FFFFFF;
 }
 
 .year:hover,
 .year:hover > a {
-    background-color: #5B0042;
+    background-color: #000000;
     color: #FFFFFF;
 }
 
 .today {
-    background-color: #5B0042 !important;
+    background-color: #000000 !important;
     color: #FFFFFF !important;
 }
 
@@ -186,16 +192,16 @@ a.list-group-item.active > .badge,
 .btn-primary > a,
 .btn-primary > button,
 .btn-primary > input {
-    background-color: #5B0042 !important;
+    background-color: #000000 !important;
 }
 
 .btn-primary:hover,
 .btn-primary > a:hover,
 .btn-primary > button:hover,
 .btn-primary > input:hover {
-    background-color: #650015 !important;
+    background-color: #444444 !important;
 }
 
 .form-control {
-    color: #5B0042 !important;
+    color: #000000 !important;
 }

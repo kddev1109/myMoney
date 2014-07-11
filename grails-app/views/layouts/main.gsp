@@ -48,6 +48,15 @@
                 <span class="glyphicon glyphicon-picture"></span> <g:message code='myMoney.nav.themes'/> <span class="caret"></span>
             </a>
             <ul class="dropdown-menu" role="menu">
+                <li ng-class="{ 'disabled' : mainCtrl.theme.name === 'monochrome' }">
+                    <a ng-show="mainCtrl.theme.name !== 'monochrome'" href="#saveTheme" ng-click="mainCtrl.previewSelectedTheme('monochrome', 'Monochrome')"
+                       data-toggle="modal">
+                        <span class="glyphicon glyphicon-stop monochrome"></span> <g:message code='myMoney.nav.themes.monochrome'/>
+                    </a>
+                    <a ng-show="mainCtrl.theme.name === 'monochrome'" href="#">
+                        <span class="glyphicon glyphicon-stop monochrome"></span> <g:message code='myMoney.nav.themes.monochrome'/>
+                    </a>
+                </li>
                 <li ng-class="{ 'disabled' : mainCtrl.theme.name === 'sapphire' }">
                     <a ng-show="mainCtrl.theme.name !== 'sapphire'" href="#saveTheme" ng-click="mainCtrl.previewSelectedTheme('sapphire', 'Sapphire')"
                        data-toggle="modal">

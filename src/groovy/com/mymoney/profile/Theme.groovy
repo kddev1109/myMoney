@@ -6,7 +6,8 @@ public enum Theme {
     RAINFOREST ('rainforest', 'Rain Forest'),
     SAPPHIRE ('sapphire', 'Sapphire'),
     COTTON_CANDY ('cotton-candy', 'Cotton Candy'),
-    IVORY ('ivory', 'Ivory')
+    IVORY ('ivory', 'Ivory'),
+    MONOCHROME ('monochrome', 'Monochrome')
 
     private String name
     private String title

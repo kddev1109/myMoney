@@ -4,7 +4,7 @@ import com.mymoney.profile.Theme
 
 public interface MyMoneyConstants {
 
-    public final Theme THEME_DEFAULT = Theme.SAPPHIRE
+    public final Theme THEME_DEFAULT = Theme.MONOCHROME
 
     public final String ALERT_HEADING_FAMILY_MEMBER_REQUEST = 'Family Member Request: '
 

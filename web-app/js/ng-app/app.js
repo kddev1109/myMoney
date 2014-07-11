@@ -13,8 +13,8 @@
         this.activeNav = 'Home';
 
         this.theme = {
-            name: 'sapphire',
-            title: 'Sapphire'
+            name: 'monochrome',
+            title: 'Monochrome'
         };
 
         this.themeBeforePreview = {};
