@@ -2,13 +2,6 @@ package com.mymoney.config
 
 import com.mymoney.profile.Theme
 
-/**
- * Created with IntelliJ IDEA.
- * User: kuldeep1109
- * Date: 7/2/14
- * Time: 1:53 PM
- * To change this template use File | Settings | File Templates.
- */
 public interface MyMoneyConstants {
 
     public final Theme THEME_DEFAULT = Theme.SAPPHIRE
