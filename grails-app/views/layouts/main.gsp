@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="${resource(dir: 'css', file: 'mobile.css')}" type="text/css">
     <link rel="stylesheet" href="${resource(dir: 'css', file: 'bootstrap-formhelpers.css')}" type="text/css">
     <link rel="stylesheet" href="${resource(dir: 'css', file: 'bootstrap-formhelpers.min.css')}" type="text/css">
+    <link rel="stylesheet" href="${resource(dir: 'css', file: 'font-awesome.css')}" type="text/css">
+    <link rel="stylesheet" href="${resource(dir: 'css', file: 'font-awesome.min.css')}" type="text/css">
 
     <r:require modules="bootstrap"/>
     <r:require module="app"/>
@@ -32,16 +34,37 @@
 
 <g:if test="${Holders.applicationContext.getBean('springSecurityService').isLoggedIn()}">
     <ul class="nav nav-pills navbar-static-top">
-        <li ng-class="{ 'active' : mainCtrl.isActiveNav('Home') }" ng-click="mainCtrl.setActiveNav('Home')">
-            <a href="${createLink(controller: 'home', action: 'index')}">
-                <span class="glyphicon glyphicon-home"></span> <g:message code='myMoney.nav.home'/>
-            </a>
+        <li style="font-family: 'Brush Script MT', cursive !important; font-weight: bold !important; font-size: 24px !important; padding-top: 5px !important;">
+            <label class="property-label">
+                <span class="glyphicon glyphicon-usd"></span> <g:message code='myMoney.nav.title'/>
+            </label>
         </li>
-        <li ng-class="{ 'active' : mainCtrl.isActiveNav('Profile') }" ng-click="mainCtrl.setActiveNav('Profile')">
-            <a href="${createLink(controller: 'profile', action: 'index',
-                                  params: [id: ((User) Holders.applicationContext.getBean('springSecurityService').currentUser).id])}">
-                <span class="glyphicon glyphicon-briefcase"></span> <g:message code='myMoney.nav.profile'/>
+        <li class="dropdown navbar-right">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <span class="glyphicon glyphicon-user"></span> <g:message code='myMoney.nav.welcome'
+                                                                          args='["${((User) Holders.applicationContext.getBean('springSecurityService').currentUser).username}"]'/> <span
+                class="caret"></span>
             </a>
+            <ul class="dropdown-menu" role="menu">
+                <li>
+                    <a href="${createLink(controller: 'home', action: 'alertList')}">
+                        <span class="glyphicon glyphicon-bell"></span> <g:message code='myMoney.nav.alerts'/> <span
+                        class="badge">${alertCount}</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="${createLink(controller: 'profile', action: 'settings')}">
+                        <span class="glyphicon glyphicon-cog"></span> <g:message code='myMoney.nav.settings'/>
+                    </a>
+                </li>
+                <li class="nav-divider"></li>
+                <li>
+                    <a href="#"
+                       ng-click="mainCtrl.logout('${createLink(controller: 'logout', action: 'index')}', '${createLink(controller: 'home', action: 'index')}')">
+                        <span class="glyphicon glyphicon-off"></span> <g:message code='myMoney.nav.logout'/>
+                    </a>
+                </li>
+            </ul>
         </li>
         <li class="dropdown navbar-right">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -103,41 +126,18 @@
                 </li>
             </ul>
         </li>
-        <li class="dropdown navbar-right">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <span class="glyphicon glyphicon-user"></span> <g:message code='myMoney.nav.welcome'
-                                                                          args='["${((User) Holders.applicationContext.getBean('springSecurityService').currentUser).username}"]'/> <span
-                class="caret"></span>
+        <li ng-class="{ 'navbar-right active' : mainCtrl.isActiveNav('Profile'), 'navbar-right': !mainCtrl.isActiveNav('Profile') }"
+            ng-click="mainCtrl.setActiveNav('Profile')">
+            <a href="${createLink(controller: 'profile', action: 'index',
+                                  params: [id: ((User) Holders.applicationContext.getBean('springSecurityService').currentUser).id])}">
+                <span class="glyphicon glyphicon-briefcase"></span> <g:message code='myMoney.nav.profile'/>
             </a>
-            <ul class="dropdown-menu" role="menu">
-                <li>
-                    <a href="${createLink(controller: 'home', action: 'alertList')}">
-                        <span class="glyphicon glyphicon-bell"></span> <g:message code='myMoney.nav.alerts'/> <span
-                        class="badge">${alertCount}</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="${createLink(controller: 'profile', action: 'settings')}">
-                        <span class="glyphicon glyphicon-cog"></span> <g:message code='myMoney.nav.settings'/>
-                    </a>
-                </li>
-                <li class="nav-divider"></li>
-                <li>
-                    <a href="#"
-                       ng-click="mainCtrl.logout('${createLink(controller: 'logout', action: 'index')}', '${createLink(controller: 'home', action: 'index')}')">
-                        <span class="glyphicon glyphicon-off"></span> <g:message code='myMoney.nav.logout'/>
-                    </a>
-                </li>
-            </ul>
         </li>
-    </ul>
-    <ul class="nav navbar-fixed-bottom">
-        <li class="col-md-12 text-center property-value">
-            <%
-                def c = Calendar.getInstance()
-                c.setTime(new Date())
-            %>
-            Copyright <span class="glyphicon glyphicon-copyright-mark"></span> ${c.get(Calendar.YEAR)}. All Rights Reserved.
+        <li ng-class="{ 'navbar-right active' : mainCtrl.isActiveNav('Home'), 'navbar-right' : !mainCtrl.isActiveNav('Home') }"
+            ng-click="mainCtrl.setActiveNav('Home')">
+            <a href="${createLink(controller: 'home', action: 'index')}">
+                <span class="glyphicon glyphicon-home"></span> <g:message code='myMoney.nav.home'/>
+            </a>
         </li>
     </ul>
 
@@ -173,6 +173,15 @@
         </div>
     </div>
 </g:if>
+<ul class="nav navbar-fixed-bottom">
+    <li class="col-md-12 text-center property-value">
+        <%
+            def c = Calendar.getInstance()
+            c.setTime(new Date())
+        %>
+        Copyright <span class="glyphicon glyphicon-copyright-mark"></span> ${c.get(Calendar.YEAR)}. All Rights Reserved.
+    </li>
+</ul>
 <g:layoutBody/>
 <r:layoutResources/>
 </body>

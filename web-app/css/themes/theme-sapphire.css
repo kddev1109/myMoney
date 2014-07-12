@@ -186,14 +186,14 @@ a.list-group-item.active > .badge,
 .btn-primary > a,
 .btn-primary > button,
 .btn-primary > input {
-    background-color: #00368D !important;
+    background-color: #003997 !important;
 }
 
 .btn-primary:hover,
 .btn-primary > a:hover,
 .btn-primary > button:hover,
 .btn-primary > input:hover {
-    background-color: #003997 !important;
+    background-color: #0036BD !important;
 }
 
 .form-control {
