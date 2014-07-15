@@ -13,8 +13,6 @@
     <link rel="stylesheet" href="${resource(dir: 'css', file: 'mobile.css')}" type="text/css">
     <link rel="stylesheet" href="${resource(dir: 'css', file: 'bootstrap-formhelpers.css')}" type="text/css">
     <link rel="stylesheet" href="${resource(dir: 'css', file: 'bootstrap-formhelpers.min.css')}" type="text/css">
-    <link rel="stylesheet" href="${resource(dir: 'css', file: 'font-awesome.css')}" type="text/css">
-    <link rel="stylesheet" href="${resource(dir: 'css', file: 'font-awesome.min.css')}" type="text/css">
 
     <r:require modules="bootstrap"/>
     <r:require module="app"/>
@@ -32,13 +30,15 @@
 <script type="text/javascript" src="${resource(dir: 'js/bootstrap-formhelpers', file: 'bootstrap-formhelpers.min.js')}"></script>
 <script type="text/javascript" src="${resource(dir: 'js/ng-app', file: 'app.js')}"></script>
 
-<g:if test="${Holders.applicationContext.getBean('springSecurityService').isLoggedIn()}">
-    <ul class="nav nav-pills navbar-static-top">
-        <li style="font-family: 'Brush Script MT', cursive !important; font-weight: bold !important; font-size: 24px !important; padding-top: 5px !important;">
-            <label class="property-label">
-                <span class="glyphicon glyphicon-usd"></span> <g:message code='myMoney.nav.title'/>
-            </label>
-        </li>
+
+<ul class="nav nav-pills navbar-static-top">
+    <li style="font-family: 'Brush Script MT', cursive !important; font-weight: bold !important; font-size: 24px !important; padding-top: 5px !important;">
+        <label class="property-label">
+            %{--<i class="fa fa-money"></i> <g:message code='myMoney.nav.title'/>--}%
+            <g:message code='myMoney.nav.title'/>
+        </label>
+    </li>
+    <g:if test="${Holders.applicationContext.getBean('springSecurityService').isLoggedIn()}">
         <li class="dropdown navbar-right">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <span class="glyphicon glyphicon-user"></span> <g:message code='myMoney.nav.welcome'
@@ -139,40 +139,41 @@
                 <span class="glyphicon glyphicon-home"></span> <g:message code='myMoney.nav.home'/>
             </a>
         </li>
-    </ul>
+    </g:if>
+</ul>
 
-    <div id="saveTheme" class="modal fade">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title">
-                        <span class="glyphicon glyphicon-question-sign"></span> <g:message
-                        code='myMoney.nav.themes.modals.saveTheme.heading'/>
-                    </h4>
+<div id="saveTheme" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">
+                    <span class="glyphicon glyphicon-question-sign"></span> <g:message
+                    code='myMoney.nav.themes.modals.saveTheme.heading'/>
+                </h4>
+            </div>
+
+            <div class="modal-body">
+                <div class="col-md-12 text-center">
+                    <g:message code='myMoney.nav.themes.modals.saveTheme.message'/>
                 </div>
+            </div>
 
-                <div class="modal-body">
-                    <div class="col-md-12 text-center">
-                        <g:message code='myMoney.nav.themes.modals.saveTheme.message'/>
-                    </div>
-                </div>
-
-                <div class="modal-footer">
-                    <div class="col-md-12 text-right">
-                        <button type="button" class="btn btn-primary" data-dismiss="modal"
-                                ng-click="mainCtrl.savePreviewedTheme('${createLink(controller: 'profile', action: 'saveTheme')}')">
-                            <span class="glyphicon glyphicon-save"></span> <g:message code='myMoney.nav.themes.modals.saveTheme.actions.save'/>
-                        </button>
-                        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="mainCtrl.resetTheme()">
-                            <span class="glyphicon glyphicon-remove"></span> <g:message code='myMoney.nav.themes.modals.saveTheme.actions.cancel'/>
-                        </button>
-                    </div>
+            <div class="modal-footer">
+                <div class="col-md-12 text-right">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal"
+                            ng-click="mainCtrl.savePreviewedTheme('${createLink(controller: 'profile', action: 'saveTheme')}')">
+                        <span class="glyphicon glyphicon-save"></span> <g:message code='myMoney.nav.themes.modals.saveTheme.actions.save'/>
+                    </button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="mainCtrl.resetTheme()">
+                        <span class="glyphicon glyphicon-remove"></span> <g:message code='myMoney.nav.themes.modals.saveTheme.actions.cancel'/>
+                    </button>
                 </div>
             </div>
         </div>
     </div>
-</g:if>
+</div>
+
 <ul class="nav navbar-fixed-bottom">
     <li class="col-md-12 text-center property-value">
         <%
